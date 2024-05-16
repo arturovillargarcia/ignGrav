@@ -425,9 +425,9 @@ class PuntoObsAdmin(LeafletGeoAdmin):
 
         p.setFont("Times-Roman", 10)
 
-        logo = "C:\ignGrav\igngrav\media\RESENA\logo_mitma.jpg"
+        logo = "C:\ignGrav\igngrav\media\RESENA\logo_mitms.jpg"
 
-        pageinfo = ("www.ign.es", "gravimetria@mitma.es")
+        pageinfo = ("www.ign.es", "gravimetria@transportes.gob.es")
 
         # primera página
 
@@ -629,7 +629,7 @@ class PuntoObsAdmin(LeafletGeoAdmin):
         p.setFillColorRGB(0, 0, 255)
         p.setFont("Times-Roman", 9)
         p.drawString(cm, 0.75 * cm, pageinfo[0])
-        p.drawString(17 * cm, 0.75 * cm, pageinfo[1])
+        p.drawString(15.9 * cm, 0.75 * cm, pageinfo[1])
 
         p.showPage()
 
@@ -891,7 +891,7 @@ class PuntoObsAdmin(LeafletGeoAdmin):
             p.setFillColorRGB(0, 0, 255)
             p.setFont("Times-Roman", 9)
             p.drawString(cm, 0.75 * cm, pageinfo[0])
-            p.drawString(17 * cm, 0.75 * cm, pageinfo[1])
+            p.drawString(15.9 * cm, 0.75 * cm, pageinfo[1])
 
             p.showPage()
 
@@ -1060,7 +1060,7 @@ class PuntoObsAdmin(LeafletGeoAdmin):
                 p.setFillColorRGB(0, 0, 255)
                 p.setFont("Times-Roman", 9)
                 p.drawString(cm, 0.75 * cm, pageinfo[0])
-                p.drawString(17 * cm, 0.75 * cm, pageinfo[1])
+                p.drawString(15.9 * cm, 0.75 * cm, pageinfo[1])
 
                 p.showPage()
 
@@ -1111,7 +1111,7 @@ class PuntoObsAdmin(LeafletGeoAdmin):
                 p.setFillColorRGB(0, 0, 255)
                 p.setFont("Times-Roman", 9)
                 p.drawString(cm, 0.75 * cm, pageinfo[0])
-                p.drawString(17 * cm, 0.75 * cm, pageinfo[1])
+                p.drawString(15.9 * cm, 0.75 * cm, pageinfo[1])
 
                 p.showPage()
 
@@ -1172,7 +1172,7 @@ class PuntoObsAdmin(LeafletGeoAdmin):
                 p.setFillColorRGB(0, 0, 255)
                 p.setFont("Times-Roman", 9)
                 p.drawString(cm, 0.75 * cm, pageinfo[0])
-                p.drawString(17 * cm, 0.75 * cm, pageinfo[1])
+                p.drawString(15.9 * cm, 0.75 * cm, pageinfo[1])
 
                 p.showPage()
 
