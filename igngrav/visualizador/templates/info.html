@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #FAFAFA;
+            font: 12pt "Tahoma";
+        }
+
+        * {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        .page {
+            width: 21cm;
+            min-height: 29.7cm;
+            padding: 2cm;
+            margin: 1cm auto;
+            border: 1px #D3D3D3 solid;
+            border-radius: 5px;
+            background: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .subpage {
+            padding: 1cm;
+            border: 2px red solid;
+            height: 256mm;
+            outline: 2cm #FFEAEA solid;
+        }
+
+        div.c {
+            text-align: right;
+            border-style: solid none solid none;
+            height: 84px;
+        }
+
+        p.mix {
+            font-size: 11px;
+        }
+
+        label.descrip {
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            word-break: break-word;
+            margin: 0 0 1em 1em;
+        }
+
+        img.ministerio {
+            float: left;
+        }
+
+        div.reseña {
+            background-color: #364b5f;
+            border-style: solid solid solid solid;
+            border-width: thick;
+            border-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        div.space {
+            color: white;
+            text-align: center;
+        }
+
+        div.contenedor {
+            text-align: left;
+            width: 100%;
+            margin: auto;
+        }
+
+
+        div.element {
+            border-style: solid solid solid solid;
+            width: 49%;
+            background-color: #CCCCCC;
+            float: left;
+        }
+
+        div.element3 {
+            border-style: solid solid solid solid;
+            width: 49%;
+            background-color: #CCCCCC;
+            float: left;
+        }
+
+        div.element2 {
+            width: 49%;
+            float: right;
+            background-color: #CCCCCC;
+            border-style: solid solid solid solid;
+            /* ponemos un donde para que se vea bonito */
+        }
+
+        div.element5 {
+            width: 100%;
+            float: right;
+            background-color: #CCCCCC;
+            border-style: solid solid solid solid;
+            /* ponemos un donde para que se vea bonito */
+        }
+
+        p.parrafos {
+            font-size: 10px;
+            text-align: center;
+            border-style: none none solid none;
+            font-weight: bold;
+        }
+
+        label.etiqueta {
+            font-size: 10px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: pre;
+            /* font-weight: bold; */
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: Verdana, sans-serif;
+            margin: 0
+        }
+
+        .mySlides {
+            display: none
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Next & previous buttons */
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: #364b5f;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Caption text */
+        .text {
+            color: #364b5f;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+            background-color: #364b5f;
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 5%;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active,
+        .dot:hover {
+            background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+
+            .prev,
+            .next,
+            .text {
+                font-size: 11px
+            }
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            .page {
+                margin: 0;
+                border: initial;
+                border-radius: initial;
+                width: initial;
+                min-height: initial;
+                box-shadow: initial;
+                background: initial;
+                page-break-after: always;
+            }
+        }
+
+        #chartdiv {
+            width: 100%;
+            height: 450px;
+        }
+
+        table {
+            text-align: left;
+            width: 100%;
+            margin: auto;
+            font-size: 8px;
+        }
+
+        td,
+        th {
+            /* width: 90%; */
+            border: 1px solid #dddddd;
+            text-align: center;
+            /* padding: 8px; */
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+            text-align: center;
+        }
+
+        #chartdivGrav {
+            width: 100%;
+            height: 230px;
+        }
+
+        #chartdivTemp {
+            width: 100%;
+            height: 200px;
+        }
+
+        #chartdivPres {
+            width: 100%;
+            height: 200px;
+        }
+
+        #chartdivMar {
+            width: 100%;
+            height: 200px;
+        }
+
+        #chartdivCarg {
+            width: 100%;
+            height: 200px;
+        }
+
+        
+    </style>
+
+    <!-- Resources graphics-->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+</head>
+
+<body>
+
+    <div class="book">
+        <!-- PAGINA 1 DE LA RESEÑA -->
+        <div class="page" id="page1">
+            <!-- <div class="subpage">Page 1/2</div> -->
+            {% load static %}
+            <div class="c">
+                <img class="ministerio" src="{% static 'ministerio.png' %}"
+                    alt="Ministerio de Transportes y Movilidad Sostenible" width="330" height="80">
+                <br>
+                <h7>INSTITUTO GEOGRÁFICO NACIONAL</h7>
+                <p class="mix">Servicio de Gravimetría</p>
+            </div>
+            <br>
+            <div class="reseña">
+                <h6 id="title"> RESEÑA GRAVIMÉTRICA DE OBSERVACIÓN ABSOLUTA</h6>
+            </div>
+
+            <br>
+            <div class="contenedor">
+                <div id="element" class="element">
+                    <p class="parrafos"> Datos de la estación y del punto de observación</p>
+                    <label class="etiqueta" id="id_estacion" style="font-weight: bold;">ID estación: </label>
+                    <br>
+                    <label class="etiqueta" id="nombre">Nombre: </label>
+                    <br>
+                    <label class="etiqueta" id="ptoObservacion">Punto de observación: </label>
+                    <br>
+                    <label class="etiqueta" id="nombrePto">Nombre del punto: </label>
+                    <br>
+                    <label class="etiqueta" id="tipoSeñal">Tipo de señalización: </label>
+                    <br>
+                </div>
+
+                <div id="element2" class="element2">
+                    <p class="parrafos">Datos geográficos</p>
+                    <label class="etiqueta" id="pais" style="font-weight: bold;">País: </label>
+                    <br>
+                    <label class="etiqueta" id="ccaa">Comunidad autónoma: </label>
+                    <br>
+                    <label class="etiqueta" id="provincia">Provincia: </label>
+                    <br>
+                    <label class="etiqueta" id="municipio">Municipio: </label>
+                    <br>
+                    <label class="etiqueta" id="hoja_mtn25">Hoja MTN25: </label>
+                    <br>
+                </div>
+
+                <div class="space">
+                    <h7>SALTO LINEA</h7>
+                </div>
+
+                <div id="element3" class="element3">
+                    <p class="parrafos"> Datos geodésicos</p>
+                    <label class="etiqueta" id="latitud" style="font-weight: bold;">Latitud: </label>
+                    <br>
+                    <label class="etiqueta" id="longitud">Longitud: </label>
+                    <br>
+                    <label class="etiqueta" id="altOrto">Altitud ortométrica: </label>
+                    <br>
+                    <label class="etiqueta" id="utm_x">UTM X: </label>
+                    <br>
+                    <label class="etiqueta" id="utm_y">UTM Y: </label>
+                    <br>
+                    <label class="etiqueta" id="zona_utm">Zona UTM: </label>
+                    <br>
+                    <label class="etiqueta" id="src">Sistema de Referencia: </label>
+                    <br>
+                </div>
+
+                <div id="element2" class="element2">
+                    <p class="parrafos"> Datos del lugar observado</p>
+                    <label class="descrip" id="descripcion"> </label>
+                    <br>
+                    <label class="descrip" id="direccion"> </label>
+                    <br>
+
+                </div>
+                <br>
+            </div>
+            <div class="space">
+                <h7>SALTO LINEA</h7>
+            </div>
+            <!-- <br><br> -->
+            {% load static %}
+            <div class="slideshow-container">
+                <br>
+                <div class="mySlides fade">
+                    <div class="numbertext">1 / 4</div>
+                    <img id="img1" src="" style="width:75%; display: block; margin-left: auto; margin-right: auto">
+                    <!-- <div class="text">Imagen Ubicación Norte Oeste</div> -->
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">2 / 4</div>
+                    <img id="img2" src="" style="width:75%; display: block; margin-left: auto; margin-right: auto">
+                    <!-- <div class="text">Imagen Ubicación Norte Este</div> -->
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">3 / 4</div>
+                    <img id="img3" src="" style="width:75%; display: block; margin-left: auto; margin-right: auto">
+                    <!-- <div class="text">Imagen Ubicación Sur Oeste </div> -->
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">4 / 4</div>
+                    <img id="img4" src="" style="width:75%; display: block; margin-left: auto; margin-right: auto">
+                    <!-- <div class="text">Imagen Ubicación Sur Este</div> -->
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">❮</a>
+                <a class="next" onclick="plusSlides(1)">❯</a>
+
+            </div>
+
+            <!-- <br> -->
+
+            <div id='dots' style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+
+            </div>
+
+        </div>
+        <!-- PAGINA 2 DE LA RESEÑA -->
+        <div class="page" id="page2">
+            <!-- <div class="subpage">Page 2/2</div> -->
+            <div class="c">
+                <img class="ministerio" src="{% static 'ministerio.png' %}"
+                    alt="Ministerio de Transportes y Movilidad Sostenible" width="330" height="80">
+                <br>
+                <h7>INSTITUTO GEOGRÁFICO NACIONAL</h7>
+                <p class="mix">Servicio de Gravimetría</p>
+            </div>
+            <br>
+            <div class="reseña">
+                <h6> DATOS DETALLADOS DE LA OBSERVACIÓN</h6>
+            </div>
+            <br>
+            <div class="contenedor">
+                <div id="element5" class="element5">
+                    <p class="parrafos"> Datos de la observación</p>
+                    <label class="etiqueta" id="grav" style="font-weight: bold;">Gravedad: </label>
+                    <br>
+                    <label class="etiqueta" id="altObs" style="font-weight: bold;">Altura de la observación: </label>
+                    <br>
+                    <label class="etiqueta" id="sigma">Incertidumbre total: </label>
+                    <br>
+                    <label class="etiqueta" id="gravimetro">Gravimetro empleado: </label>
+                    <br>
+                    <label class="etiqueta" id="gradV">Gradiente vertical (observado): </label>
+                    <br>
+                    <label class="etiqueta" id="grav0">Gravedad a 0 cm: </label>
+                    <br>
+                    <label class="etiqueta" id="date">Fecha de observacion: </label>
+                    <br>
+                </div>
+            </div>
+            <div class="space">
+                <h7>SALTO LINEA</h7>
+            </div>
+            <div class="reseña" id="historialOBS">
+                <h6> HISTORIAL DE OBSERVACIONES</h6>
+            </div>
+            <br>
+
+            <div id="chartdiv"></div>
+
+        </div>
+        <!-- PAGINA 3 DE LA RESEÑA -->
+        <div class="page" id="page3">
+            <div id="chartdivGrav"></div>
+            <br></br>
+            <div id="chartdivTemp"></div>
+            <br></br>
+            <div id="chartdivPres"></div>
+            <br></br>
+            <div id="chartdivMar"></div>
+            <br></br>
+            <div id="chartdivCarg"></div>
+
+
+        </div>
+        <!-- PAGINA 4 DE LA RESEÑA -->
+        <div class="page" id="page4">
+            <div class="c">
+                <img class="ministerio" src="{% static 'ministerio.png' %}"
+                    alt="Ministerio de Transportes y Movilidad Sostenible" width="330" height="80">
+                <br>
+                <h7>INSTITUTO GEOGRÁFICO NACIONAL</h7>
+                <p class="mix">Servicio de Gravimetría</p>
+            </div>
+            <br>
+            <div class="reseña">
+                <h6> HISTORIAL DE OBSERVACIONES</h6>
+            </div>
+            <br>
+            <div class="contenedor">
+                <table id="historico">
+                    <tr>
+                        <th>Fecha de observación</th>
+                        <th>Gravedad observada [μGal]</th>
+                        <th>Altura de la observación [cm]</th>
+                        <th>Set procesados [μGal]</th>
+                        <th>Caídas por set [μGal]</th>
+                        <th>Dispersión entre sets [μGal]</th>
+                        <th>Incertidumbre de la medida [μGal]</th>
+                        <th>Incertidumbre sistemática [μGal]</th>
+                        <th>Incertidumbre total [μGal]</th>
+                        <th>Gravedad a 0 cm [μGal]</th>
+                        <th>Gravímetro</th>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Files static to join -->
+    {% load static %}
+    <script type="text/javascript" src="{% static 'comunidades.js' %}"></script>
+    <script type="text/javascript" src="{% static 'provincias.js' %}"></script>
+    <script type="text/javascript" src="{% static 'municipios.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hojas25.js' %}"></script>
+    <script type="text/javascript" src="{% static 'paises.js' %}"></script>
+
+    <script>
+
+        var fichero_sets = JSON.stringify('{{fichero_sets}}'.replace(/(&#x27;)/g, "'").replace(/'/g, '"').replace(/(\r\n|\n|\r)/gm, ""))
+
+        const objfichero_sets = JSON.parse(fichero_sets)
+
+        const FicheroSETS = JSON.parse(objfichero_sets)
+        var tituloReseña = document.getElementById("title");
+
+
+        var labelIdEstacion = document.getElementById("id_estacion");
+        var labelNombre = document.getElementById("nombre");
+        var labelPtoObservacion = document.getElementById("ptoObservacion");
+        var labelNombrePto = document.getElementById("nombrePto");
+        var labelTipoSeñal = document.getElementById("tipoSeñal");
+
+        var source = JSON.parse(localStorage.getItem("Parareseña"))
+
+
+        let coordinatesPto
+        let pto_obs
+        let nombre_pto
+        let tipo_señal
+        let id_obs
+        let latitude
+        let longitude
+        let altitud
+        let utmx
+        let utmy
+        let zona_utm
+        let descrip
+        let imagem1
+        let imagem2
+        let imagem3
+        let imagem4
+        let pto_obs_MultiCoord
+
+
+        const señal = {
+            'Pilar': 1,
+            'Clavo': 2,
+            'Marca': 3,
+            'Sin Señalizar': 4,
+            'Desconocido': 5
+        }
+        console.log(source.geometry.coordinates.length)
+
+        for (p = 0; p < source.ptosObs.length; p++) {
+
+            if ('observaciones' in source) {
+                pto_obs_MultiCoord = source.observaciones[p].punto_obs
+                pto_obs = source.ptosObs[p].id_punto_obs
+                nombre_pto = source.ptosObs[p].nombre
+                tipo_señal = source.ptosObs[p].tipo_senal === 1 ? 'Pilar' : source.ptosObs[p].tipo_senal === 2 ? 'Clavo' : source.ptosObs[p].tipo_senal === 3 ? 'Marca' : source.ptosObs[p].tipo_senal === 4 ? 'Sin Señalizar' : 'Desconocido'
+                latitude = source.ptosObs[p].latitud
+                longitude = source.ptosObs[p].longitud
+                altitud = source.ptosObs[p].altitud
+                utmx = source.ptosObs[p].utm_x
+                utmy = source.ptosObs[p].utm_y
+                zona_utm = source.ptosObs[p].utm_zona
+                descrip = source.ptosObs[p].descripcion
+                imagem1 = source.ptosObs[p].imagen_nw
+                imagem2 = source.ptosObs[p].imagen_ne
+                imagem3 = source.ptosObs[p].imagen_sw
+                imagem4 = source.ptosObs[p].imagen_se
+
+            } else {
+                // eliminar las páginas de las observaciones porque no hay observaciones vinculadas.
+                document.querySelector('div#page2.page').style.visibility = 'hidden'
+                document.querySelector('div#page3.page').style.visibility = 'hidden'
+                document.querySelector('div#page4.page').style.visibility = 'hidden'
+                document.querySelector('.slideshow-container').style.visibility = 'hidden'
+                document.querySelector('div#dots').style.visibility = 'hidden'
+                pto_obs = source.ptosObs[p].id_punto_obs
+                nombre_pto = source.ptosObs[p].nombre
+                tipo_señal = source.ptosObs[p].tipo_senal === 1 ? 'Pilar' : source.ptosObs[p].tipo_senal === 2 ? 'Clavo' : source.ptosObs[p].tipo_senal === 3 ? 'Marca' : source.ptosObs[p].tipo_senal === 4 ? 'Sin Señalizar' : 'Desconocido'
+                latitude = source.ptosObs[p].latitud
+                longitude = source.ptosObs[p].longitud
+                altitud = source.ptosObs[p].altitud
+                utmx = source.ptosObs[p].utm_x
+                utmy = source.ptosObs[p].utm_y
+                zona_utm = source.ptosObs[p].utm_zona
+                descrip = source.ptosObs[p].descripcion
+                imagem1 = source.ptosObs[p].imagen_nw
+                imagem2 = source.ptosObs[p].imagen_ne
+                imagem3 = source.ptosObs[p].imagen_sw
+                imagem4 = source.ptosObs[p].imagen_se
+
+            }
+
+
+        }
+
+
+
+        // id_estacion
+        var id_estacion = document.createElement("text");
+        id_estacion.textContent = source.properties.Estación;
+        id_estacion.className = "mix"
+        labelIdEstacion.appendChild(id_estacion);
+        //  nombre
+        var nombre = document.createElement("text");
+        nombre.textContent = source.properties.Nombre;
+        nombre.className = "mix"
+        labelNombre.appendChild(nombre);
+        //  Punto de observación
+        var punto_observacion = document.createElement("text");
+        punto_observacion.textContent = pto_obs;
+        punto_observacion.className = "mix"
+        labelPtoObservacion.appendChild(punto_observacion);
+        // Nombre del punto
+        var nombre_punto = document.createElement("text");
+        nombre_punto.textContent = nombre_pto;
+        nombre_punto.className = "mix"
+        labelNombrePto.appendChild(nombre_punto);
+        // Tipo de señalizacion
+        var tipo_señalizacion = document.createElement("text");
+        tipo_señalizacion.textContent = tipo_señal;
+        tipo_señalizacion.className = "mix"
+        labelTipoSeñal.appendChild(tipo_señalizacion);
+
+        // pais
+        var labelPais = document.getElementById("pais");
+        var pais = document.createElement("text");
+        // pais.textContent = paises.nombre[paises.codigo.indexOf(source.properties.País)];
+        pais.textContent = source.properties.País
+        pais.className = "mix"
+        labelPais.appendChild(pais);
+        // ccaa
+        var labelCCAA = document.getElementById("ccaa");
+        var ccaa = document.createElement("text");
+        // ccaa.textContent = comunidades_autonomas.nombre[comunidades_autonomas.codigo.indexOf(source.properties["Comunidad autónoma"])];
+        ccaa.textContent = source.properties["Comunidad autónoma"]
+        ccaa.className = "mix"
+        labelCCAA.appendChild(ccaa);
+        // provincia
+        var labelProvincia = document.getElementById("provincia");
+        var provincia = document.createElement("text");
+        // provincia.textContent = provincias.nombre[provincias.codigo.indexOf(source.properties.provincia)];
+        provincia.textContent = source.properties.Provincia
+        provincia.className = "mix"
+        labelProvincia.appendChild(provincia);
+        // municipio
+        var labelMunicipio = document.getElementById("municipio");
+        var municipio = document.createElement("text");
+        // municipio.textContent = municipios.nombre[municipios.codigo.indexOf(source.properties.municipio)];
+        municipio.textContent = source.properties.Municipio
+        municipio.className = "mix"
+        labelMunicipio.appendChild(municipio);
+        // hoja_mtn25
+        var labelHoja = document.getElementById("hoja_mtn25");
+        var hoja_mtn25 = document.createElement("text");
+        hoja_mtn25.textContent = `${hojas25.hoja[hojas25.codigo.indexOf(source.hoja_mtn25)]}-${hojas25.nombre[hojas25.codigo.indexOf(source.hoja_mtn25)]} `;
+        hoja_mtn25.className = "mix"
+        labelHoja.appendChild(hoja_mtn25);
+
+        // latitud
+        var labelLatitud = document.getElementById("latitud");
+        var lat_geo = document.createElement("text");
+        lat_geo.textContent = `${latitude}º`;
+        lat_geo.className = "mix"
+        labelLatitud.appendChild(lat_geo);
+        // longitud
+        var labelLongitud = document.getElementById("longitud");
+        var long_geo = document.createElement("text");
+        long_geo.textContent = `${longitude}º`;
+        long_geo.className = "mix"
+        labelLongitud.appendChild(long_geo);
+
+        // altitud
+        var labelAltitud = document.getElementById("altOrto");
+        var alt_orto = document.createElement("text");
+        alt_orto.textContent = `${altitud} m`;
+        alt_orto.className = "mix"
+        labelAltitud.appendChild(alt_orto);
+
+        // UTM X
+        var labelUTMx = document.getElementById("utm_x");
+        var UTMx = document.createElement("text");
+        UTMx.textContent = `${utmx} m`;
+        UTMx.className = "mix"
+        labelUTMx.appendChild(UTMx);
+
+        // UTM Y
+        var labelUTMy = document.getElementById("utm_y");
+        var UTMy = document.createElement("text");
+        UTMy.textContent = `${utmy} m`;
+        UTMy.className = "mix"
+        labelUTMy.appendChild(UTMy);
+
+        // Zona UTM
+        var labelZonaUTM = document.getElementById("zona_utm");
+        var ZonaUTM = document.createElement("text");
+        ZonaUTM.textContent = `${zona_utm}`;
+        ZonaUTM.className = "mix"
+        labelZonaUTM.appendChild(ZonaUTM);
+        // Sistema de Referencia
+        var labelSRC = document.getElementById("src");
+        var src = document.createElement("text");
+        src.textContent = source.properties.com_autonoma === 1 ? "REGCAN95" : source.properties.com_autonoma !== 1 ? "ETRS89" : "Desconocido";
+        src.className = "mix"
+        labelSRC.appendChild(src);
+
+        // Descripcion
+        var labelDescripcion = document.getElementById("descripcion");
+        var descripcion = document.createElement("text");
+        descripcion.textContent = `Descripción: ${descrip}`;
+        descripcion.className = "descrip"
+        labelDescripcion.appendChild(descripcion);
+
+        // Dirección
+        var labelDireccion = document.getElementById("direccion");
+        var direccion = document.createElement("text");
+        direccion.textContent = `Dirección: ${source.direccion}`;
+        direccion.className = "mix"
+        labelDireccion.appendChild(direccion);
+
+        // IMAGENES DEFINICION
+        var divImagen1 = document.getElementById("img1");
+        var divImagen2 = document.getElementById("img2");
+        var divImagen3 = document.getElementById("img3");
+        var divImagen4 = document.getElementById("img4");
+        // var img1 = document.createElement("img");
+        divImagen1.src = `{% static '${imagem1}' %}`;
+        divImagen2.src = `{% static '${imagem2}' %}`;
+        divImagen3.src = `{% static '${imagem3}' %}`;
+        divImagen4.src = `{% static '${imagem4}' %}`;
+
+
+        // Imagenes en carrusel
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+
+
+        // OBSERVACIONES 
+        //  Encontrar la fecha más actual y que sea publicable y con FG5
+        //  Sino encontrar fecha más actual publicable con A10 
+        //  Sino fecha más actual NO publicable con FG5
+        //  Sino fecha más actual NO publicable con A10
+        //  Sino fecha más actual con gravimetro relativo
+        let fechasFG5pub = []
+
+        let fechasA10pub = []
+
+        let fechasFG5 = []
+
+        let fechasA10 = []
+
+        let fechasObs = []
+        if ('observaciones' in source) {
+            for (c = 0; c < source.observaciones.length; c++) {
+                if (source.observaciones[c].punto_obs === pto_obs_MultiCoord && source.observaciones[c].modelo === 2 && source.observaciones[c].publicable === true) {
+                    fechasFG5pub.push(source.observaciones[c].fecha_observacion)
+                } else if (source.observaciones[c].punto_obs === pto_obs_MultiCoord && source.observaciones[c].modelo === 1 && source.observaciones[c].publicable === true) {
+                    fechasA10pub.push(source.observaciones[c].fecha_observacion)
+                } else if (source.observaciones[c].punto_obs === pto_obs_MultiCoord && source.observaciones[c].modelo === 2 && source.observaciones[c].publicable === false) {
+                    fechasFG5.push(source.observaciones[c].fecha_observacion)
+                } else if (source.observaciones[c].punto_obs === pto_obs_MultiCoord && source.observaciones[c].modelo === 1 && source.observaciones[c].publicable === false) {
+                    fechasA10.push(source.observaciones[c].fecha_observacion)
+                } else {
+                    fechasObs.push(source.observaciones[c].fecha_observacion)
+                }
+            }
+        }
+
+        if (fechasFG5pub.length !== 0) {
+            let arrayFechas = fechasFG5pub.map((fechaActual) => new Date(fechaActual));
+            var fechaMax = new Date(Math.max.apply(null, arrayFechas));
+            const maxOffset = fechaMax.getTimezoneOffset()
+            fechaMax = new Date(fechaMax.getTime() - (maxOffset * 60 * 1000))
+            valueFechaMax = fechaMax.toISOString().split('T')[0]
+
+        } else if (fechasA10pub.length !== 0) {
+            let arrayFechas = fechasA10pub.map((fechaActual) => new Date(fechaActual));
+            var fechaMax = new Date(Math.max.apply(null, arrayFechas));
+            const maxOffset = fechaMax.getTimezoneOffset()
+            fechaMax = new Date(fechaMax.getTime() - (maxOffset * 60 * 1000))
+            valueFechaMax = fechaMax.toISOString().split('T')[0]
+
+        } else if (fechasFG5.length !== 0) {
+            let arrayFechas = fechasFG5.map((fechaActual) => new Date(fechaActual));
+            var fechaMax = new Date(Math.max.apply(null, arrayFechas));
+            const maxOffset = fechaMax.getTimezoneOffset()
+            fechaMax = new Date(fechaMax.getTime() - (maxOffset * 60 * 1000))
+            valueFechaMax = fechaMax.toISOString().split('T')[0]
+
+        } else if (fechasA10.length !== 0) {
+            let arrayFechas = fechasA10.map((fechaActual) => new Date(fechaActual));
+            var fechaMax = new Date(Math.max.apply(null, arrayFechas));
+            const maxOffset = fechaMax.getTimezoneOffset()
+            fechaMax = new Date(fechaMax.getTime() - (maxOffset * 60 * 1000))
+            valueFechaMax = fechaMax.toISOString().split('T')[0]
+
+        } else if (fechasObs.length !== 0) {
+            let arrayFechas = fechasObs.map((fechaActual) => new Date(fechaActual));
+            var fechaMax = new Date(Math.max.apply(null, arrayFechas));
+            const maxOffset = fechaMax.getTimezoneOffset()
+            fechaMax = new Date(fechaMax.getTime() - (maxOffset * 60 * 1000))
+            valueFechaMax = fechaMax.toISOString().split('T')[0]
+
+        }
+
+
+        let gravedad
+        let alt_obs
+        let sigmaT
+        let grav
+        let gradV
+        let gravedad0
+        let num_serie
+        let fichero_sets_fecha
+        let sets_procesados
+        let drops_por_set
+        if ('observaciones' in source) {
+            for (r = 0; r < source.observaciones.length; r++) {
+                if (source.observaciones[r].fecha_observacion === valueFechaMax) {
+                    gravedad = source.observaciones[r].gravedad_observada
+                    alt_obs = source.observaciones[r].altura_de_observacion
+                    sigmaT = source.observaciones[r].incertidumbre_total
+                    grav = source.observaciones[r].modelo === 1 ? 'A10' : source.observaciones[r].modelo === 2 ? 'FG5' : source.observaciones[r].modelo === 3 ? 'LRG' : source.observaciones[r].modelo === 4 ? 'gPhone' : source.observaciones[r].modelo === 5 ? 'gPhoneX' : source.observaciones[r].modelo === 6 ? 'CG5' : source.observaciones[r].modelo === 7 ? 'B' : source.observaciones[r].modelo === 8 ? 'LRD' : 'JILAG'
+                    num_serie = source.observaciones[r].num_serie
+                    gradV = source.observaciones[r].gradiente_vertical
+                    gravedad0 = source.observaciones[r].gravedad_cero
+                    fichero_sets_fecha = source.observaciones[r].fichero_set
+                    sets_procesados = source.observaciones[r].sets_procesados
+                    drops_por_set = source.observaciones[r].drops_por_set
+
+                }
+
+            }
+        }
+
+        // gravedad
+        var labelGrav = document.getElementById("grav");
+        var g = document.createElement("text");
+        g.textContent = `${gravedad} μGal`;
+        g.className = "mix"
+        labelGrav.appendChild(g);
+
+        // altura de la obsevacion
+        var labelAlt = document.getElementById("altObs");
+        var altObsg = document.createElement("text");
+        altObsg.textContent = `${alt_obs} cm`;
+        altObsg.className = "mix"
+        labelAlt.appendChild(altObsg);
+
+        // incertidumbre total
+        var labelSigma = document.getElementById("sigma");
+        var sig = document.createElement("text");
+        sig.textContent = `${sigmaT} μGal`;
+        sig.className = "mix"
+        labelSigma.appendChild(sig);
+
+        // gravimetro
+        var labelGravimetro = document.getElementById("gravimetro");
+        var gravimeter = document.createElement("text");
+        gravimeter.textContent = `${grav}#${num_serie}`;
+        gravimeter.className = "mix"
+        labelGravimetro.appendChild(gravimeter);
+
+        // gradiente vertical observado
+        var labelGradV = document.getElementById("gradV");
+        var gradVert = document.createElement("text");
+        gradVert.textContent = `${gradV} μGal/cm`;
+        gradVert.className = "mix"
+        labelGradV.appendChild(gradVert);
+
+        // gravedad 0 cm 
+        var labelGrav0 = document.getElementById("grav0");
+        var grave0 = document.createElement("text");
+        grave0.textContent = `${gravedad0} μGal`;
+        grave0.className = "mix"
+        labelGrav0.appendChild(grave0);
+
+        // fecha de la observacion
+        if ('observaciones' in source) {
+            var labelDate = document.getElementById("date");
+            var date = document.createElement("text");
+            date.textContent = valueFechaMax;
+            date.className = "mix"
+            labelDate.appendChild(date);
+        }
+
+        // GRÁFICAS 
+        let fechasT = []
+        let gravedadT = []
+        let publicable = []
+        let data = []
+        if ('observaciones' in source) {
+            for (h = 0; h < source.observaciones.length; h++) {
+                if (source.observaciones[h].punto_obs === pto_obs_MultiCoord) {
+                    values = {
+                        'public': source.observaciones[h].publicable,
+                        "x": source.observaciones[h].fecha_observacion,
+                        "y": source.observaciones[h].gravedad_cero,
+                        "errorX": 0,
+                        "errorY": source.observaciones[h].dispersion
+                    }
+                    data.push(values)
+                    fechasT.push(source.observaciones[h].fecha_observacion)
+                    gravedadT.push(source.observaciones[h].gravedad_cero)
+                    // publicable.push(source.observaciones[h].publicable)
+                }
+                if (source.observaciones[h].tipo_gravimetro === 2) {
+                    tituloReseña.innerText = 'RESEÑA GRAVIMÉTRICA DE OBSERVACIÓN RELATIVA'
+                }
+            }
+
+
+
+            for (sets = 0; sets < FicheroSETS.length; sets++) {
+                if (FicheroSETS[sets].file === fichero_sets_fecha) {
+                    var setData = FicheroSETS[sets].datos
+                }
+            }
+
+            if (setData !== undefined) {
+                for (gravSet = 0; gravSet < setData.length; gravSet++) {
+                    setData[gravSet].gravedad = setData[gravSet].gravedad - gravedad
+
+                    setData[gravSet].incertidumbre = setData[gravSet].incertidumbre + sigmaT
+                }
+            } else {
+                document.querySelector('div#page3.page').style.visibility = 'hidden'
+                document.querySelector('div#page4.page').style.visibility = 'hidden'
+                document.querySelector('div#historialOBS').style.visibility = 'hidden'
+            }
+
+        }
+
+        if ('observaciones' in source && setData !== undefined) {
+            // FUNCION DE LAS GRAFICAS
+            am5.ready(function () {
+
+                // Create root element
+                // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+                var root = am5.Root.new("chartdiv");
+
+                // Set themes
+                // https://www.amcharts.com/docs/v5/concepts/themes/
+                root.setThemes([
+                    am5themes_Animated.new(root)
+                ]);
+
+                // Create chart
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/
+                var chart = root.container.children.push(am5xy.XYChart.new(root, {
+                    panX: true,
+                    panY: true,
+                    wheelY: "zoomXY",
+                    pinchZoomX: true,
+                    pinchZoomY: true
+                }));
+
+                chart.get("colors").set("step", 2);
+
+                chart.children.unshift(am5.Label.new(root, {
+                    text: "Gravedad 0 cm (μGal)",
+                    fontSize: 12,
+                    fontWeight: "500",
+                    textAlign: "center",
+                    x: am5.percent(25),
+                    y: am5.percent(-3),
+                    centerX: am5.percent(50),
+                    paddingTop: 0,
+                    paddingBottom: 0
+                }));
+
+
+                // Create axes
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+                var xRenderer = am5xy.AxisRendererX.new(root, {
+                    minorGridEnabled: true
+                });
+                xRenderer.labels.template.setAll({
+                    rotation: -90,
+                    centerY: am5.p50,
+                    centerX: 0,
+                    fontSize: 10
+                });
+
+                xRenderer.grid.template.setAll({
+                    visible: true,
+                })
+
+                var yRenderer = am5xy.AxisRendererY.new(root, {
+                    minGridDistance: 50,
+                    maxDeviation: 0.4,
+                    minorGridEnabled: true,
+                    // min: Math.min(...gravedadT),
+                    // max: Math.max(...gravedadT)
+                });
+
+
+
+                yRenderer.labels.template.setAll({
+                    fontSize: 10,
+                    visible: true,
+                    // minPosition: Math.min(...gravedadT),
+                    // maxPosition: Math.max(...gravedadT)
+                    // maxChars: 9
+                });
+
+                var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+                    categoryField: "x",
+                    renderer: xRenderer,
+                    tooltip: am5.Tooltip.new(root, {})
+                }));
+
+                var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+                    // extraMax: 0.2,
+                    // extraMin: 0.2,
+                    renderer: yRenderer,
+                    tooltip: am5.Tooltip.new(root, {})
+                }));
+
+                // Create series
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+                root.numberFormatter.set("numberFormat", "####.00");
+                var series = chart.series.push(am5xy.LineSeries.new(root, {
+                    calculateAggregates: true,
+                    xAxis: xAxis,
+                    yAxis: yAxis,
+                    valueYField: "y",
+                    categoryXField: "x",
+                    tooltip: am5.Tooltip.new(root, {
+                        labelText: `g: {valueY}\nσg: {errorY}`
+                    })
+                }));
+
+                // add error bullet
+                series.bullets.push(function () {
+                    var graphics = am5.Graphics.new(root, {
+                        strokeWidth: 2,
+                        stroke: am5.color(0x00000),
+                        draw: function (display, target) {
+                            var dataItem = target.dataItem;
+                            var width = 0
+                            var errorY = dataItem.dataContext.errorY;
+
+                            var yPosition0 = yAxis.valueToPosition(0);
+                            var yPosition1 = yAxis.valueToPosition(errorY);
+                            if (dataItem.dataContext.errorY >= 1.8) {
+                                var height = (yAxis.get("renderer").positionToCoordinate(yPosition1) - yAxis.get("renderer").positionToCoordinate(yPosition0)) / 2;
+
+                                display.moveTo(0, -height);
+                                display.lineTo(0, height);
+
+                                display.moveTo(-5, -height);
+                                display.lineTo(5, -height);
+
+                                display.moveTo(-5, height);
+                                display.lineTo(5, height);
+                            }
+
+
+                        }
+                    });
+
+                    return am5.Bullet.new(root, {
+                        dynamic: true,
+                        sprite: graphics
+                    });
+                });
+
+                var bulletTemplate = am5.Template.new(root, {});
+
+
+                // Add circle bullet
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/series/#Bullets
+                series.bullets.push(function (root, series, dataItem) {
+
+                    if (dataItem.dataContext.public === true) {
+                        var graphics = am5.Circle.new(root, {
+                            strokeWidth: 2,
+                            radius: 3,
+                            fill: am5.color(0x00ff00),
+                            stroke: am5.color(0x00000),
+
+                        }, bulletTemplate);
+                    } else {
+                        var graphics = am5.Circle.new(root, {
+                            strokeWidth: 2,
+                            radius: 3,
+                            fill: am5.color(0xff0000),
+                            stroke: am5.color(0x00000),
+                        }, bulletTemplate);
+                    }
+                    return am5.Bullet.new(root, {
+                        sprite: graphics
+                    });
+                });
+
+                series.strokes.template.set("strokeOpacity", 0);
+
+                // Add cursor
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+                chart.set("cursor", am5xy.XYCursor.new(root, {
+                    xAxis: xAxis,
+                    yAxis: yAxis,
+                    snapToSeries: [series]
+                }));
+
+
+                xAxis.data.setAll(data);
+                series.data.setAll(data);
+
+                // // Make stuff animate on load
+                // // https://www.amcharts.com/docs/v5/concepts/animations/
+                series.appear(1000);
+                chart.appear(1000, 100);
+
+                // -------------------------------------------------------------------
+
+                var rootGrav = am5.Root.new("chartdivGrav");
+
+                // Set themes
+                // https://www.amcharts.com/docs/v5/concepts/themes/
+                rootGrav.setThemes([
+                    am5themes_Animated.new(rootGrav)
+                ]);
+
+                // Create chart
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/
+                var chartGrav = rootGrav.container.children.push(am5xy.XYChart.new(rootGrav, {
+                    panX: true,
+                    panY: true,
+                    // wheelY: "zoomXY",
+                    // pinchZoomX: true,
+                    // pinchZoomY: true
+                }));
+
+
+                rootGrav._logo._localBounds.left = 80
+
+
+
+                chartGrav.get("colors").set("step", 2);
+
+                var labelGraphics = chartGrav.children.unshift(am5.Label.new(rootGrav, {
+                    text: `Gravedad (${alt_obs} cm): ${gravedad} ± ${sigmaT} μGal`,
+                    fontSize: 12,
+                    fontWeight: "500",
+                    textAlign: "center",
+                    x: am5.percent(26),
+                    y: am5.percent(-9),
+                    centerX: am5.percent(50),
+                    paddingTop: 0,
+                    paddingBottom: 0
+                }));
+
+                var labelGraphicsFin = chartGrav.children.unshift(am5.Label.new(rootGrav, {
+                    text: `${sets_procesados} sets procesados (${drops_por_set} caídas por set)`,
+                    fontSize: 12,
+                    fontWeight: "500",
+                    textAlign: "center",
+                    x: am5.percent(80),
+                    y: am5.percent(-9),
+                    centerX: am5.percent(50),
+                    paddingTop: 0,
+                    paddingBottom: 0
+                }));
+
+
+                // Create axes
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+                var xAxisGrav = chartGrav.xAxes.push(am5xy.CategoryAxis.new(rootGrav, {
+                    maxDeviation: 0.3,
+                    categoryField: "sets",
+                    renderer: am5xy.AxisRendererX.new(rootGrav, {
+                        minGridDistance: 45,
+                        minorGridEnabled: true,
+                        visible: false
+                    }),
+                    tooltip: am5.Tooltip.new(rootGrav, {})
+
+                }));
+
+
+
+
+                var yAxisGrav = chartGrav.yAxes.push(am5xy.ValueAxis.new(rootGrav, {
+                    // extraMax: 0.7,
+                    // extraMin: 1.8,
+                    min: -80,
+                    max: 80,
+                    renderer: am5xy.AxisRendererY.new(rootGrav, {
+                        minGridDistance: 20,
+                        minorGridEnabled: true,
+                    }),
+                    tooltip: am5.Tooltip.new(rootGrav, {})
+                }));
+
+                // var rangeDataItem = yAxis.makeDataItem({
+                //     value: 100,
+                //     endValue: 200
+                // });
+                // var yAxisGrav = yAxis.createAxisRange(rangeDataItem);
+
+                // Create series
+                // https://www.amcharts.com/docs/v5/charts/xy-chartGrav/series/
+                rootGrav.numberFormatter.set("numberFormat", "####.00");
+                var seriesGrav = chartGrav.series.push(am5xy.LineSeries.new(rootGrav, {
+                    calculateAggregates: true,
+                    xAxis: xAxisGrav,
+                    yAxis: yAxisGrav,
+                    valueYField: "gravedad",
+                    categoryXField: "sets",
+                    tooltip: am5.Tooltip.new(rootGrav, {
+                        labelText: `g: {gravedad_tool}\nσ: {incertidumbre}`
+                    })
+                }));
+
+                // add error bullet
+                seriesGrav.bullets.push(function () {
+                    var graphicsGrav = am5.Graphics.new(rootGrav, {
+                        strokeWidth: 2,
+                        stroke: am5.color(0x3D85C6),
+                        draw: function (display, target) {
+                            var dataItem = target.dataItem;
+                            var width = 0
+
+
+                            var errorY = dataItem.dataContext.incertidumbre;
+
+                            var yPosition0 = yAxisGrav.valueToPosition(0);
+                            var yPosition1 = yAxisGrav.valueToPosition(errorY);
+
+                            var height = (yAxisGrav.get("renderer").positionToCoordinate(yPosition1) - yAxisGrav.get("renderer").positionToCoordinate(yPosition0)) / 2;
+
+                            display.moveTo(0, -height);
+                            display.lineTo(0, height);
+
+                            display.moveTo(-5, -height);
+                            display.lineTo(5, -height);
+
+                            display.moveTo(-5, height);
+                            display.lineTo(5, height);
+                        }
+                    });
+
+                    return am5.Bullet.new(rootGrav, {
+                        dynamic: true,
+                        sprite: graphicsGrav
+                    });
+                });
+
+                var bulletTemplateGrav = am5.Template.new(rootGrav, {});
+
+
+
+                // Add circle bullet
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/series/#Bullets
+                seriesGrav.bullets.push(function (rootGrav, series, dataItem) {
+
+                    var graphicsGrav = am5.Circle.new(rootGrav, {
+                        strokeWidth: 2,
+                        radius: 3,
+                        fill: am5.color(0x3D85C6),
+                        // series.set("fill", am5.color(0xff0000))
+                        stroke: am5.color(0x00000),
+                        // fill: rootGrav.interfaceColors.get("background"),
+                    }, bulletTemplateGrav);
+
+
+
+                    return am5.Bullet.new(rootGrav, {
+                        sprite: graphicsGrav
+                    });
+                });
+
+                seriesGrav.strokes.template.set("strokeOpacity", 0);
+
+                // Add cursor
+                // https://www.amcharts.com/docs/v5/charts/xy-chartGrav/cursor/
+                chartGrav.set("cursor", am5xy.XYCursor.new(rootGrav, {
+                    xAxis: xAxisGrav,
+                    yAxis: yAxisGrav,
+                    snapToSeries: [seriesGrav]
+                }));
+
+
+                xAxisGrav.data.setAll(setData);
+                seriesGrav.data.setAll(setData);
+
+                // -------------------------------------------------------------------
+
+                // Create root element
+                // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+                var rootTemp = am5.Root.new("chartdivTemp");
+
+                const myTheme = am5.Theme.new(rootTemp);
+
+                // Set themes
+                // https://www.amcharts.com/docs/v5/concepts/themes/
+                rootTemp.setThemes([
+                    am5themes_Animated.new(rootTemp),
+                    myTheme
+                ]);
+
+                // Create chart
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/
+                var chartTemp = rootTemp.container.children.push(am5xy.XYChart.new(rootTemp, {
+                    panX: false,
+                    panY: false,
+                    // wheelX: "panX",
+                    // wheelY: "zoomX",
+                    paddingLeft: 0
+                }));
+
+                chartTemp.children.unshift(am5.Label.new(rootTemp, {
+                    text: "Temperatura (ºC)",
+                    fontSize: 12,
+                    fontWeight: "500",
+                    textAlign: "center",
+                    x: am5.percent(15),
+                    y: am5.percent(-9),
+                    centerX: am5.percent(50),
+                    paddingTop: 0,
+                    paddingBottom: 0
+                }));
+
+                // Add cursor
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+                var cursorTemp = chartTemp.set("cursor", am5xy.XYCursor.new(rootTemp, {
+                    // behavior: "zoomX"
+                }));
+                cursorTemp.lineY.set("visible", false);
+
+                // Create axes
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+                var xAxisTemp = chartTemp.xAxes.push(
+                    am5xy.CategoryAxis.new(rootTemp, {
+                        categoryField: "sets",
+                        // visible: false,
+                        renderer: am5xy.AxisRendererX.new(rootTemp, {})
+                    })
+                );
+
+                xAxisTemp.data.setAll(setData);
+
+                var yAxisTemp = chartTemp.yAxes.push(am5xy.ValueAxis.new(rootTemp, {
+                    extraMax: 0.2,
+                    extraMin: 0.2,
+                    renderer: am5xy.AxisRendererY.new(rootTemp, {
+                        minGridDistance: 45,
+                        minorGridEnabled: true
+                    }),
+                    tooltip: am5.Tooltip.new(rootTemp, {})
+                }));
+
+
+                // Add series
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+                var seriesTemp = chartTemp.series.push(am5xy.LineSeries.new(rootTemp, {
+                    name: "Series",
+                    xAxis: xAxisTemp,
+                    yAxis: yAxisTemp,
+                    valueYField: "temperatura",
+                    // valueXField: "sets",
+                    stroke: am5.color(0xE06666),
+                    strokeWidth: 2,
+                    categoryXField: "sets",
+                    tooltip: am5.Tooltip.new(rootTemp, {
+                        labelText: "{valueY}"
+                    })
+
+                }));
+
+                // Actual bullet
+                seriesTemp.bullets.push(function () {
+                    var bulletCircleTemp = am5.Circle.new(rootTemp, {
+                        radius: 5,
+                        fill: seriesTemp.set("fill", am5.color(0xEA9999)),
+                        stroke: am5.color(0x00000),
+                    });
+                    return am5.Bullet.new(rootTemp, {
+                        sprite: bulletCircleTemp
+                    })
+                })
+
+                seriesTemp.data.setAll(setData);
+                // Make stuff animate on load
+                // https://www.amcharts.com/docs/v5/concepts/animations/
+                seriesTemp.appear(100);
+                chartTemp.appear(100, 10);
+
+                // ----------------------------------------------------------------------------
+
+                var rootPres = am5.Root.new("chartdivPres");
+
+                const myThemePres = am5.Theme.new(rootPres);
+
+                // Set themes
+                // https://www.amcharts.com/docs/v5/concepts/themes/
+                rootPres.setThemes([
+                    am5themes_Animated.new(rootPres),
+                    myThemePres
+                ]);
+
+                // Create chart
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/
+                var chartPres = rootPres.container.children.push(am5xy.XYChart.new(rootPres, {
+                    panX: false,
+                    panY: false,
+                    // wheelX: "panX",
+                    // wheelY: "zoomX",
+                    paddingLeft: 0
+                }));
+
+                chartPres.children.unshift(am5.Label.new(rootPres, {
+                    text: "Presión (mBar)",
+                    fontSize: 12,
+                    fontWeight: "500",
+                    textAlign: "center",
+                    x: am5.percent(15),
+                    y: am5.percent(-9),
+                    centerX: am5.percent(50),
+                    paddingTop: 0,
+                    paddingBottom: 0
+                }));
+
+                // Add cursor
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+                var cursorPres = chartPres.set("cursor", am5xy.XYCursor.new(rootPres, {
+                    // behavior: "zoomX"
+                }));
+                cursorPres.lineY.set("visible", false);
+
+                // Create axes
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+                var xAxisPres = chartPres.xAxes.push(
+                    am5xy.CategoryAxis.new(rootPres, {
+                        categoryField: "sets",
+                        // visible:false,
+                        renderer: am5xy.AxisRendererX.new(rootPres, {})
+                    })
+                );
+
+                xAxisPres.data.setAll(setData);
+
+                var yAxisPres = chartPres.yAxes.push(am5xy.ValueAxis.new(rootPres, {
+                    extraMax: 0.2,
+                    extraMin: 0.2,
+                    renderer: am5xy.AxisRendererY.new(rootPres, {
+                        minGridDistance: 45,
+                        minorGridEnabled: true
+                    }),
+                    tooltip: am5.Tooltip.new(rootPres, {})
+                }));
+
+
+                // Add series
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+                var seriesPres = chartPres.series.push(am5xy.LineSeries.new(rootPres, {
+                    name: "Series",
+                    xAxis: xAxisPres,
+                    yAxis: yAxisPres,
+                    valueYField: "presion",
+                    categoryXField: "sets",
+                    stroke: am5.color(0x9900FF),
+                    strokeWidth: 2,
+                    tooltip: am5.Tooltip.new(rootPres, {
+                        labelText: "{valueY}"
+                    })
+                }));
+
+                // Actual bullet
+                seriesPres.bullets.push(function () {
+                    var bulletCirclePres = am5.Circle.new(rootPres, {
+                        radius: 5,
+                        fill: seriesPres.set("fill", am5.color(0xB055EC)),
+                        stroke: am5.color(0x00000),
+                    });
+                    return am5.Bullet.new(rootPres, {
+                        sprite: bulletCirclePres
+                    })
+                })
+
+                seriesPres.data.setAll(setData);
+                // Make stuff animate on load
+                // https://www.amcharts.com/docs/v5/concepts/animations/
+                seriesPres.appear(100);
+                chartPres.appear(100, 10);
+                // ----------------------------------------------------------------------------
+
+                var rootMar = am5.Root.new("chartdivMar");
+
+                const myThemeMar = am5.Theme.new(rootMar);
+
+                // Set themes
+                // https://www.amcharts.com/docs/v5/concepts/themes/
+                rootMar.setThemes([
+                    am5themes_Animated.new(rootMar),
+                    myThemeMar
+                ]);
+
+                // Create chart
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/
+                var chartMar = rootMar.container.children.push(am5xy.XYChart.new(rootMar, {
+                    panX: false,
+                    panY: false,
+                    // wheelX: "panX",
+                    // wheelY: "zoomX",
+                    paddingLeft: 0
+                }));
+
+                chartMar.children.unshift(am5.Label.new(rootMar, {
+                    text: "Marea Terrestre (μGal)",
+                    fontSize: 12,
+                    fontWeight: "500",
+                    textAlign: "center",
+                    x: am5.percent(17),
+                    y: am5.percent(-9),
+                    centerX: am5.percent(50),
+                    paddingTop: 0,
+                    paddingBottom: 0
+                }));
+
+                // Add cursor
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+                var cursorMar = chartMar.set("cursor", am5xy.XYCursor.new(rootMar, {
+                    // behavior: "zoomX"
+                }));
+                cursorMar.lineY.set("visible", false);
+
+                // Create axes
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+                var xAxisMar = chartMar.xAxes.push(
+                    am5xy.CategoryAxis.new(rootMar, {
+                        categoryField: "sets",
+                        // visible: false,
+                        renderer: am5xy.AxisRendererX.new(rootMar, {})
+                    })
+                );
+
+                xAxisMar.data.setAll(setData);
+
+                var yAxisMar = chartMar.yAxes.push(am5xy.ValueAxis.new(rootMar, {
+                    extraMax: 0.2,
+                    extraMin: 0.2,
+                    renderer: am5xy.AxisRendererY.new(rootMar, {
+                        minGridDistance: 45,
+                        minorGridEnabled: true
+                    }),
+                    tooltip: am5.Tooltip.new(rootMar, {})
+                }));
+
+
+                // Add series
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+                var seriesMar = chartMar.series.push(am5xy.LineSeries.new(rootMar, {
+                    name: "Series",
+                    xAxis: xAxisMar,
+                    yAxis: yAxisMar,
+                    valueYField: "mareaT",
+                    categoryXField: "sets",
+                    stroke: am5.color(0x41D2CC),
+                    strokeWidth: 2,
+                    tooltip: am5.Tooltip.new(rootMar, {
+                        labelText: "{valueY}"
+                    })
+                }));
+
+                // Actual bullet
+                seriesMar.bullets.push(function () {
+                    var bulletCircleMar = am5.Circle.new(rootMar, {
+                        radius: 5,
+                        fill: seriesMar.set("fill", am5.color(0x3DDBB1)),
+                        stroke: am5.color(0x00000),
+                    });
+                    return am5.Bullet.new(rootMar, {
+                        sprite: bulletCircleMar
+                    })
+                })
+
+                seriesMar.data.setAll(setData);
+                // Make stuff animate on load
+                // https://www.amcharts.com/docs/v5/concepts/animations/
+                seriesMar.appear(100);
+                chartMar.appear(100, 10);
+
+                // -----------------------------------------------------------------------------
+
+                var rootCarg = am5.Root.new("chartdivCarg");
+
+                const myThemeCarg = am5.Theme.new(rootCarg);
+
+                // Set themes
+                // https://www.amcharts.com/docs/v5/concepts/themes/
+                rootCarg.setThemes([
+                    am5themes_Animated.new(rootCarg),
+                    myThemeCarg
+                ]);
+
+                // Create chart
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/
+                var chartCarg = rootCarg.container.children.push(am5xy.XYChart.new(rootCarg, {
+                    panX: false,
+                    panY: false,
+                    // wheelX: "panX",
+                    // wheelY: "zoomX",
+                    paddingLeft: 0
+                }));
+
+                chartCarg.children.unshift(am5.Label.new(rootCarg, {
+                    text: "Carga Oceanica (μGal)",
+                    fontSize: 12,
+                    fontWeight: "500",
+                    textAlign: "center",
+                    x: am5.percent(17),
+                    y: am5.percent(-9),
+                    centerX: am5.percent(50),
+                    paddingTop: 0,
+                    paddingBottom: 0
+                }));
+
+                // Add cursor
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+                var cursorCarg = chartCarg.set("cursor", am5xy.XYCursor.new(rootCarg, {
+                    // behavior: "zoomX"
+                }));
+                cursorCarg.lineY.set("visible", false);
+
+                // Create axes
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+                var xAxisCarg = chartCarg.xAxes.push(
+                    am5xy.CategoryAxis.new(rootCarg, {
+                        categoryField: "sets",
+                        renderer: am5xy.AxisRendererX.new(rootCarg, {})
+                    })
+                );
+
+                xAxisCarg.data.setAll(setData);
+
+                var yAxisCarg = chartCarg.yAxes.push(am5xy.ValueAxis.new(rootCarg, {
+                    extraMax: 0.2,
+                    extraMin: 0.2,
+                    renderer: am5xy.AxisRendererY.new(rootCarg, {
+                        minGridDistance: 45,
+                        minorGridEnabled: true
+                    }),
+                    tooltip: am5.Tooltip.new(rootCarg, {})
+                }));
+
+
+                // Add series
+                // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+                var seriesCarg = chartCarg.series.push(am5xy.LineSeries.new(rootCarg, {
+                    name: "Series",
+                    xAxis: xAxisCarg,
+                    yAxis: yAxisCarg,
+                    valueYField: "cargaO",
+                    categoryXField: "sets",
+                    stroke: am5.color(0xE06666),
+                    strokeWidth: 2,
+                    tooltip: am5.Tooltip.new(rootCarg, {
+                        labelText: "{valueY}"
+                    })
+                }));
+
+                // Actual bullet
+                seriesCarg.bullets.push(function () {
+                    var bulletCircleCarg = am5.Circle.new(rootCarg, {
+                        radius: 5,
+                        fill: seriesCarg.set("fill", am5.color(0xE69138)),
+                        stroke: am5.color(0x00000),
+                    });
+                    return am5.Bullet.new(rootCarg, {
+                        sprite: bulletCircleCarg
+                    })
+                })
+
+                seriesCarg.data.setAll(setData);
+                // Make stuff animate on load
+                // https://www.amcharts.com/docs/v5/concepts/animations/
+                seriesCarg.appear(100);
+                chartCarg.appear(100, 10);
+
+
+                if (source.observaciones.length !== 1) {
+                    bulletTemplate.events.on("click", function (ev) {
+
+                        var fecha_nueva_click
+                        var gravedad_nueva_click
+                        var sigma_nueva_click
+                        var alt_nueva_click
+                        var sets_procesados_nueva_click
+                        var caidas_nueva_click
+                        var num_serie_nueva_click
+                        var gravedad0_nueva_click
+                        var grav_nueva_click
+                        var gradV_nueva_click
+                        var date_nueva_click
+
+                        for (h = 0; h < source.observaciones.length; h++) {
+                            if (source.observaciones[h].punto_obs === pto_obs_MultiCoord && source.observaciones[h].fecha_observacion === ev.target.dataItem.dataContext.x) {
+                                fecha_nueva_click = source.observaciones[h].fichero_set
+                                gravedad_nueva_click = source.observaciones[h].gravedad_observada
+                                sigma_nueva_click = source.observaciones[h].incertidumbre_total
+                                alt_nueva_click = source.observaciones[h].altura_de_observacion
+                                sets_procesados_nueva_click = source.observaciones[h].sets_procesados
+                                caidas_nueva_click = source.observaciones[h].drops_por_set
+                                grav_nueva_click = source.observaciones[h].modelo === 1 ? 'A10' : source.observaciones[h].modelo === 2 ? 'FG5' : source.observaciones[h].modelo === 3 ? 'LRG' : source.observaciones[h].modelo === 4 ? 'gPhone' : source.observaciones[h].modelo === 5 ? 'gPhoneX' : source.observaciones[h].modelo === 6 ? 'CG5' : source.observaciones[h].modelo === 7 ? 'B' : source.observaciones[h].modelo === 8 ? 'LRD' : 'JILAG'
+                                gradV_nueva_click = source.observaciones[h].gradiente_vertical
+                                gravedad0_nueva_click = source.observaciones[h].gravedad_cero
+                                date_nueva_click = source.observaciones[h].fecha_observacion
+                                num_serie_nueva_click = num_serie = source.observaciones[h].num_serie
+                            }
+                        }
+                        for (sets = 0; sets < FicheroSETS.length; sets++) {
+                            if (FicheroSETS[sets].file === fecha_nueva_click) {
+                                setData = FicheroSETS[sets].datos
+                            }
+                        }
+
+                        for (gravSet = 0; gravSet < setData.length; gravSet++) {
+                            setData[gravSet].gravedad = setData[gravSet].gravedad - gravedad_nueva_click
+
+                            setData[gravSet].incertidumbre = setData[gravSet].incertidumbre + sigma_nueva_click
+                        }
+
+
+
+                        document.querySelector('#grav').textContent = `Gravedad: ${gravedad_nueva_click} μGal`
+                        document.querySelector('#altObs').textContent = `Altura de la observación: ${alt_nueva_click} cm`
+                        document.querySelector('#sigma').textContent = `Incertidumbre total: ${sigma_nueva_click} μGal`
+                        document.querySelector('#gravimetro').textContent = `Gravimetro empleado: ${grav_nueva_click}#${num_serie_nueva_click}`
+                        document.querySelector('#gradV').textContent = `Gradiente vertical (observado): ${gradV_nueva_click} μGal/cm`
+                        document.querySelector('#grav0').textContent = `Gravedad a 0 (cm): ${gravedad0_nueva_click} μGal`
+                        document.querySelector('#date').textContent = `Fecha de observación: ${date_nueva_click}`
+
+
+                        labelGraphics.set("text", `Gravedad (${alt_nueva_click} cm): ${gravedad_nueva_click} ± ${sigma_nueva_click} μGal`);
+                        labelGraphicsFin.set("text", `${sets_procesados_nueva_click} sets procesados (${caidas_nueva_click} caídas por set)`);
+
+                        seriesGrav.data.setAll(setData)
+                        xAxisGrav.data.setAll(setData);
+
+                        seriesTemp.data.setAll(setData)
+                        xAxisTemp.data.setAll(setData);
+                        seriesPres.data.setAll(setData)
+                        xAxisPres.data.setAll(setData);
+                        seriesMar.data.setAll(setData)
+                        xAxisMar.data.setAll(setData);
+                        seriesCarg.data.setAll(setData)
+                        xAxisCarg.data.setAll(setData);
+                    });//end function click
+                }
+
+
+
+            }); // end am5.ready()
+
+        }
+
+        var tabla = document.getElementById("historico");
+        if ('observaciones' in source) {
+            for (obs = 0; obs < source.observaciones.length; obs++) {
+                if (source.observaciones[obs].punto_obs === pto_obs_MultiCoord) {
+                    var fila = document.createElement("tr");
+                    var gravimetroModelo = source.observaciones[obs].modelo === 1 ? 'A10' : source.observaciones[obs].modelo === 2 ? 'FG5' : source.observaciones[obs].modelo === 3 ? 'LRG' : source.observaciones[obs].modelo === 4 ? 'gPhone' : source.observaciones[obs].modelo === 5 ? 'gPhoneX' : source.observaciones[obs].modelo === 6 ? 'CG5' : source.observaciones[obs].modelo === 7 ? 'B' : source.observaciones[obs].modelo === 8 ? 'LRD' : 'JILAG'
+                    const dataTable = `
+                  <td>${source.observaciones[obs].fecha_observacion}</td>
+                  <td>${source.observaciones[obs].gravedad_observada}</td>
+                  <td>${source.observaciones[obs].altura_de_observacion}</td>
+                  <td>${source.observaciones[obs].sets_procesados}</td>
+                  <td>${source.observaciones[obs].drops_por_set}</td>
+                  <td>${source.observaciones[obs].dispersion}</td>
+                  <td>${source.observaciones[obs].incertidumbre_medida}</td>
+                  <td>${source.observaciones[obs].incertidumbre_sistematica}</td>
+                  <td>${source.observaciones[obs].incertidumbre_total}</td>
+                  <td>${source.observaciones[obs].gravedad_cero}</td>
+                  <td>${gravimetroModelo}#${source.observaciones[obs].num_serie}</td>
+                  `
+                    fila.innerHTML = dataTable
+                    tabla.appendChild(fila)
+                }
+                // dataTable.appendChild(tabla);
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

@@ -166,3 +166,6 @@ igngrav/media/FICHEROS/
 igngrav/media/FOTOS/
 igngrav/media/MANTENIMIENTO/
 igngrav/media/MANUALES/
+
+# Ecluded directories within static directory
+igngrav/static/FOTOS/

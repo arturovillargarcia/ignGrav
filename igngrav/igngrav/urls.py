@@ -26,4 +26,6 @@ admin.site.index_title  =  "Administración de datos"
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("chaining/", include("smart_selects.urls")),
+    path('visualizador/', include('visualizador.urls')),
+    path('visualizador/info/', include('visualizador.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
