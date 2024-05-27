@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_gis',
     'smart_selects',
+    'visualizador',
 ]
 
 # Needed for django-smart-selects to work

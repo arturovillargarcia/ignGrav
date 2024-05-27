@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="cnig" content="yes">
+    <title>visualizador base</title>
+    <!-- Estilo de la API -->
+    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .m-areas>div.m-area>div.m-panel.collapsed>div.m-panel-controls {
+            -webkit-transition: max-width .0s ease 0s, opacity .0s ease 0s;
+            transition: max-width .0s ease 0s, opacity .0s ease 0s;
+        }
+
+        .m-panel-controls>div.ol-control-tool {
+            padding: 5px !important;
+        }
+
+        .m-panel.panelExtraCSS.opened>button {
+            color: #71a7d3 !important;
+            background-color: #fff !important;
+        }
+
+        .m-panel.panelExtraCSS.collapsed .m-panel-controls {
+            height: 0px;
+        }
+
+        /* .panelExtraCSS .icon-target:before {
+            content: "📑";
+            font-size: 22px;
+            font-family: none
+        }*/
+
+        .m-panel.panelExtraCSSFilter.opened>button {
+            color: #71a7d3 !important;
+            background-color: #fff !important;
+        }
+
+        .m-panel.panelExtraCSSFilter.collapsed .m-panel-controls {
+            height: 0px;
+        }
+
+        .panelExtraCSSFilter .icon-target:before {
+            content: "🗳";
+            font-size: 22px;
+            font-family: none
+        }
+
+        .ol-control {
+            position: relative;
+            background-color: hsla(0, 0%, 100%, .4);
+            border-radius: 4px;
+            padding: 2px;
+            /* width: 205px; */
+        }
+
+        .divTitulo {
+            /* padding: 1px 10px 1px 10px; */
+            background-color: #71a7d3;
+            font-size: 13px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .divTituloFilter {
+            /* padding: 1px 10px 1px 10px; */
+            background-color: #71a7d3;
+            font-size: 13px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .divCuerpo {
+            padding: 1px 30px 1px 40px;
+            background-color: #ffffff;
+            /*width: 205px;*/
+        }
+
+        #titleInfo {
+            /* color: #fff;
+            font-family: Muli, "sans-serif" !important;
+            font-weight: 700; */
+            background-color: #71a7d3;
+            color: #fff;
+            display: block;
+            font-size: 15px;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 5px;
+            text-align: center;
+            width: 100%;
+            margin-block-start: 0em !important
+        }
+
+        .m-left .m-panel.panelExtraCSS.opened>button {
+            position: absolute;
+            right: -40px;
+        }
+
+        .m-left .m-panel.panelExtraCSSFilter.opened>button {
+            position: absolute;
+            right: -40px;
+        }
+
+        .ol-control button {
+            display: table-row;
+            width: fit-content;
+            cursor: pointer;
+            background-color: #71a7d3;
+            color: #fff;
+            line-height: 25px;
+            padding: 0 7px;
+            margin-right: 9px;
+            height: 2.375rem !important;
+            border: 1px solid rgba(64, 64, 64, .19215686274509805);
+            font-size: 13px;
+            margin-bottom: 9px;
+        }
+
+        #titleFilter {
+            background-color: #71a7d3;
+            color: #fff;
+            display: block;
+            font-size: 15px;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 5px;
+            text-align: center;
+            width: 100%;
+            margin-block-start: 0em !important
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        #tabla {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #tabla td,
+        #tabla th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #tabla tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #tabla tr:hover {
+            background-color: #ddd;
+        }
+
+        #tabla th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        button:disabled {
+            cursor: not-allowed;
+            background-color: rgb(229, 229, 229) !important;
+            pointer-events: none;
+        }
+
+        .list {
+            width: 200px !important;
+        }
+
+
+        .ol-attribution.ol-unselectable.ol-control.ol-collapsed.m-attribution.ol-unselectable.ol-control.ol-collapsed {
+            visibility: hidden !important;
+        }
+
+        #mapjs>div>div.ol-overlaycontainer-stopevent>div.m-areas>div.m-area.m-top.m-right>div.m-panel.m-plugin-backimglayer.collapsed>button,
+        #mapjs>div>div.ol-overlaycontainer-stopevent>div.m-areas>div.m-area.m-top.m-right>div.m-panel.m-plugin-fulltoc.collapsed>button {
+            background-color: #364b5f !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Contenedor principal del mapa -->
+    <div id="mapjs" class="m-container"></div>
+    <!-- Ficheros javascript de la API -->
+    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
+    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
+    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+
+
+    <link href="https://componentes.cnig.es/api-core/plugins/fulltoc/fulltoc.ol.min.css" rel="stylesheet" />
+    <script type="text/javascript"
+        src="https://componentes.cnig.es/api-core/plugins/fulltoc/fulltoc.ol.min.js"></script>
+
+
+    <link href="https://componentes.cnig.es/api-core/plugins/viewmanagement/viewmanagement.ol.min.css"
+        rel="stylesheet" />
+    <script type="text/javascript"
+        src="https://componentes.cnig.es/api-core/plugins/viewmanagement/viewmanagement.ol.min.js"></script>
+
+
+    <link href="https://componentes.cnig.es/api-core/plugins/mousesrs/mousesrs.ol.min.css" rel="stylesheet" />
+    <script type="text/javascript"
+        src="https://componentes.cnig.es/api-core/plugins/mousesrs/mousesrs.ol.min.js"></script>
+
+    <link href="https://componentes.cnig.es/api-core/plugins/measurebar/measurebar.ol.min.css" rel="stylesheet" />
+    <script type="text/javascript"
+        src="https://componentes.cnig.es/api-core/plugins/measurebar/measurebar.ol.min.js"></script>
+
+    <link href="https://componentes.cnig.es/api-core/plugins/backimglayer/backimglayer.ol.min.css" rel="stylesheet" />
+    <script type="text/javascript"
+        src="https://componentes.cnig.es/api-core/plugins/backimglayer/backimglayer.ol.min.js"></script>
+
+    <link href="https://componentes.cnig.es/api-core/plugins/sharemap/sharemap.ol.min.css" rel="stylesheet" />
+    <script type="text/javascript"
+        src="https://componentes.cnig.es/api-core/plugins/sharemap/sharemap.ol.min.js"></script>
+
+    <!-- Extensión información de coordenadas -->
+    <link href="https://componentes.cnig.es/api-core/plugins/infocoordinates/infocoordinates.ol.min.css"
+        rel="stylesheet" />
+    <script type="text/javascript"
+        src="https://componentes.cnig.es/api-core/plugins/infocoordinates/infocoordinates.ol.min.js"></script>
+
+    <link href="https://componentes.cnig.es/api-core/plugins/overviewmap/overviewmap.ol.min.css" rel="stylesheet" />
+    <script type="text/javascript"
+        src="https://componentes.cnig.es/api-core/plugins/overviewmap/overviewmap.ol.min.js"></script>
+
+    <script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
+
+
+    {% load static %}
+    <script type="text/javascript" src="{% static 'paises.js' %}"></script>
+    <script type="text/javascript" src="{% static 'comunidades_filtros.js' %}"></script>
+    <script type="text/javascript" src="{% static 'comunidades.js' %}"></script>
+    <script type="text/javascript" src="{% static 'municipios.js' %}"></script>
+    <script type="text/javascript" src="{% static 'provincias.js' %}"></script>
+    <script type="text/javascript" src="{% static 'provincias_filtros.js' %}"></script>
+    <script type="text/javascript" src="{% static 'islas.js' %}"></script>
+    <script type="text/javascript" src="{% static 'islas_filtros.js' %}"></script>
+
+
+
+    <script type="text/javascript">
+
+        // Configuración del mapa
+        M.proxy(false)
+        const mapjs = M.map({
+            container: 'mapjs', //id del contenedor del mapa
+            controls: [],
+            zoom: 5,
+            maxZoom: 24,
+            minZoom: 1,
+            center: [-467062.8225, 4683459.6216]
+        });
+
+
+        var db = JSON.stringify('{{estaciones}}'.replace(/(&quot\;)/g, "'").replace(/'/g, '"').replace('"El Pinar"', 'El Pinar').replace('"El Pinar",', 'El pinar,').replace('"Las Mesas"', 'Las Mesas'));
+
+        const obj = JSON.parse(db)
+
+        const est = JSON.parse(obj)
+
+        var obsDb = JSON.stringify('{{observaciones}}'.replace(/(&quot\;)/g, "'").replace(/'/g, '"').replace(/=/g, '').replace(/(\r\n|\n|\r)/gm, "").replace(/{"/g, "{?").replace(/", "/g, "?, ?").replace(/":/g, '?:').replace(/: "/g, ': ?').replace(/: true, "/g, ": true, ?").replace(/: false, "/g, ": false, ?").replace(/: null, "/g, ": null, ?").replace(/1, "/g, "1, ?").replace(/2, "/g, "2, ?").replace(/3, "/g, "3, ?").replace(/4, "/g, "4, ?").replace(/5, "/g, "5, ?").replace(/6, "/g, "6, ?").replace(/7, "/g, "7, ?").replace(/8, "/g, "8, ?").replace(/9, "/g, "9, ?").replace(/0, "/g, "0, ?").replace(/['"]+/g, '').replace(/[?]/g, '"').replace('en mi opinión no)" Se han', 'en mi opinión no), Se han').replace(/a la superficie" /g, 'a la superficie. ').replace('superficie""', 'superficie"').replace(' destacad0").', ' destacado).'))
+
+        const objObs = JSON.parse(obsDb)
+
+        let obs = JSON.parse(objObs)
+
+
+        var gravDB = JSON.stringify('{{gravimetro}}'.replace(/(&quot\;)/g, "'").replace(/'/g, '"'))
+
+        const objGrav = JSON.parse(gravDB)
+
+        const grav = JSON.parse(objGrav)
+
+
+        var ptosDB = JSON.stringify('{{ptos}}'.replace(/(&quot\;)/g, "'").replace(/'/g, '"').replace(/(\r\n|\n|\r)/gm, "").replace('"SSK56.900"', 'SSK56.900').replace('"CLAVO CRUZ"', 'CLAVO CRUZ').replace('"INTA - Estación Espacial de Maspalomas"', 'INTA - Estación Espacial de Maspalomas').replace('"SP Rotonda"', 'SP Rotonda').replace('"SS Entrada Observatorio"', 'SS Entrada Observatorio').replace('"TALV"', 'TALV'))
+
+        const objPtosObs = JSON.parse(ptosDB)
+
+        const PtosObs = JSON.parse(objPtosObs)
+
+
+        var ptosDB2 = JSON.stringify('{{ptos2}}'.replace(/(&quot\;)/g, "'").replace(/'/g, '"').replace(/(\r\n|\n|\r)/gm, "").replace('"SSK56.900"', 'SSK56.900').replace('"CLAVO CRUZ"', 'CLAVO CRUZ').replace('"INTA - Estación Espacial de Maspalomas"', 'INTA - Estación Espacial de Maspalomas').replace('"SP Rotonda"', 'SP Rotonda').replace('"SS Entrada Observatorio"', 'SS Entrada Observatorio').replace('"TALV"', 'TALV'))
+
+        const objPtosObs2 = JSON.parse(ptosDB2)
+
+        const PtosObs2 = JSON.parse(objPtosObs2)
+
+        const redes_list = {
+            nombre: [
+                "AGrav",
+                "ERGNSS",
+                "REDNAP",
+                "REGENTE"],
+            codigo: [
+                2,
+                3,
+                4,
+                6
+            ]
+        }
+
+
+        const señal = {
+            nombre: ['Pilar', 'Clavo', 'Marca', 'Sin Señalizar', 'Desconocido'],
+            codigo: [1, 2, 3, 4, 5],
+
+        }
+
+        const estadoSeñal = {
+            nombre: ['Buen-estado', 'Mal-estado', 'Desconocido'],
+            codigo: [1, 2, 3],
+
+        }
+
+        const tipoAcceso = {
+            nombre: ['Público', 'Privado', 'Desconocido'],
+            codigo: [1, 2, 3],
+
+        }
+
+        const tipoGradiente = {
+            nombre: ['Teórico', 'Observado'],
+            codigo: [1, 2],
+
+        }
+
+        const esPublicable = {
+            nombre: ['Sí', 'No'],
+            codigo: [false, true],
+        }
+
+        for (let p = 0; p < est.length; p++) {
+            for (let list = 0; list < paises.codigo.length; list++) {
+                if (est[p].properties.pais === paises.codigo[list]) {
+                    est[p].properties.pais = paises.nombre[list]
+
+                }
+            }
+        }
+
+        for (let c = 0; c < est.length; c++) {
+            for (let list = 0; list < comunidades_autonomas.codigo.length; list++) {
+                if (est[c].properties.com_autonoma === comunidades_autonomas.codigo[list]) {
+                    est[c].properties.com_autonoma = comunidades_autonomas.nombre[list]
+
+                }
+            }
+        }
+
+        for (let prov = 0; prov < est.length; prov++) {
+            for (let list = 0; list < provincias.codigo.length; list++) {
+                if (est[prov].properties.provincia === provincias.codigo[list]) {
+                    est[prov].properties.provincia = provincias.nombre[list]
+
+                }
+            }
+        }
+
+        for (let m = 0; m < est.length; m++) {
+            for (let list = 0; list < municipios.codigo.length; list++) {
+                if (est[m].properties.municipio === municipios.codigo[list]) {
+                    est[m].properties.municipio = municipios.nombre[list]
+
+                }
+            }
+        }
+
+        for (let isla = 0; isla < est.length; isla++) {
+            for (let list = 0; list < islas.codigo.length; list++) {
+                if (est[isla].properties.isla === islas.codigo[list]) {
+                    est[isla].properties.isla = islas.nombre[list]
+
+                }
+            }
+        }
+
+
+        for (let red_2 = 0; red_2 < est.length; red_2++) {
+            for (let red_2_val = 0; red_2_val < est[red_2].properties.red_secundaria.length; red_2_val++) {
+                for (let list = 0; list < redes_list.codigo.length; list++) {
+                    if (est[red_2].properties.red_secundaria[red_2_val] === redes_list.codigo[list]) {
+                        est[red_2].properties.red_secundaria[red_2_val] = redes_list.nombre[list]
+
+                    }
+
+                }
+
+            }
+        }
+
+        // municipios.nombre[municipios.codigo.indexOf(source.properties.municipio)]
+
+        for (let o = 0; o < obs.length; o++) {
+            for (let g = 0; g < grav.length; g++) {
+                if (obs[o].fields.gravimetro_observacion === grav[g].pk) {
+                    obs[o].fields.modelo = grav[g].fields.modelo
+                    obs[o].fields.num_serie = grav[g].fields.numero_serie
+                    obs[o].fields.tipo_gravimetro = grav[g].fields.tipo_gravimetro
+                }
+            }
+        }
+
+
+
+        // ####################################################################################### EMPIEZAN LAS PRUEBAS
+
+        const source2 = {
+            "type": "FeatureCollection",
+            "features": [
+
+            ],
+            "crs": {
+                "properties": {
+                    "name": "EPSG:4326"
+                },
+                "type": "name"
+            }
+        }
+
+        pk_est2 = []
+        double_obs2 = []
+        double_ptos2 = []
+        featuresOBS = []
+
+        for (let s = 0; s < PtosObs2.length; s++) {
+            for (let o = 0; o < obs.length; o++) {
+                if (obs[o].fields.punto_obs === PtosObs[s].pk && pk_est2.includes(obs[o].fields.punto_obs) === false) {
+                    observaciones = {
+                        "estacion": obs[o].fields.estacion,
+                        "punto_obs": obs[o].fields.punto_obs,
+                        "publicable": obs[o].fields.publicable,
+                        "resenable": obs[o].fields.resenable,
+                        "fichero_project": obs[o].fields.fichero_project,
+                        "fichero_set": obs[o].fields.fichero_set,
+                        "fichero_drop": obs[o].fields.fichero_drop,
+                        "fecha_observacion": obs[o].fields.fecha_observacion,
+                        "fecha_procesado": obs[o].fields.fecha_procesado,
+                        "operador_procesado": obs[o].fields.operador_procesado,
+                        "tipo_gradiente": obs[o].fields.tipo_gradiente,
+                        "observaciones_medida": obs[o].fields.observaciones_medida,
+                        "observaciones_procesado": obs[o].fields.observaciones_procesado,
+                        "gravimetro_observacion": obs[o].fields.gravimetro_observacion,
+                        "gravimetro_gradiente": obs[o].fields.gravimetro_gradiente,
+                        "gradiente_vertical": obs[o].fields.gradiente_vertical,
+                        "incertidumbre_gradiente": obs[o].fields.incertidumbre_gradiente,
+                        "gravedad_procesada": obs[o].fields.gravedad_procesada,
+                        "gravedad_observada": obs[o].fields.gravedad_observada,
+                        "gravedad_cero": obs[o].fields.gravedad_cero,
+                        "dispersion": obs[o].fields.dispersion,
+                        "incertidumbre_medida": obs[o].fields.incertidumbre_medida,
+                        "incertidumbre_sistematica": obs[o].fields.incertidumbre_sistematica,
+                        "incertidumbre_total": obs[o].fields.incertidumbre_total,
+                        "sets_observados": obs[o].fields.sets_observados,
+                        "sets_procesados": obs[o].fields.sets_procesados,
+                        "drops_por_set": obs[o].fields.drops_por_set,
+                        "altura_de_montaje": obs[o].fields.altura_de_montaje,
+                        "altura_de_observacion": obs[o].fields.altura_de_observacion,
+                        "altura_de_procesado": obs[o].fields.altura_de_procesado,
+                        "frecuencia_reloj": obs[o].fields.frecuencia_reloj,
+                        "laser_blue_wlength": obs[o].fields.laser_blue_wlength,
+                        "laser_red_wlength": obs[o].fields.laser_red_wlength,
+                        "laser_dpeak_wlength": obs[o].fields.laser_dpeak_wlength,
+                        "laser_epeak_wlength": obs[o].fields.laser_epeak_wlength,
+                        "laser_fpeak_wlength": obs[o].fields.laser_fpeak_wlength,
+                        "laser_gpeak_wlength": obs[o].fields.laser_gpeak_wlength,
+                        "laser_hpeak_wlength": obs[o].fields.laser_hpeak_wlength,
+                        "laser_ipeak_wlength": obs[o].fields.laser_ipeak_wlength,
+                        "laser_jpeak_wlength": obs[o].fields.laser_jpeak_wlength,
+                        "laser_dpeak_volt": obs[o].fields.laser_dpeak_volt,
+                        "laser_epeak_volt": obs[o].fields.laser_epeak_volt,
+                        "laser_fpeak_volt": obs[o].fields.laser_fpeak_volt,
+                        "laser_gpeak_volt": obs[o].fields.laser_gpeak_volt,
+                        "laser_hpeak_volt": obs[o].fields.laser_hpeak_volt,
+                        "laser_ipeak_volt": obs[o].fields.laser_ipeak_volt,
+                        "laser_jpeak_volt": obs[o].fields.laser_jpeak_volt,
+                        "operador_observacion": obs[o].fields.operador_observacion,
+                        "modelo": obs[o].fields.modelo,
+                        "num_serie": obs[o].fields.num_serie,
+                        "tipo_gravimetro": obs[o].fields.tipo_gravimetro
+                    }
+
+
+                    featureObs = {
+                        "id": obs[o].fields.punto_obs,
+                        "Gravimetro": [],
+                        "fecha_observacion": [],
+                        "alt_observacion": [],
+                        "gravedad_observada": [],
+                        "gradiente_vertical": [],
+                        "otrosGravimetros": [],
+                        "gravimetrosFiltro": [],
+                        "tipoGradiente": [],
+                        "publicable": [],
+                        "observaciones": [observaciones]
+                    }
+                    pk_est2.push(obs[o].fields.punto_obs)
+                    featuresOBS.push(featureObs)
+                } else if (obs[o].fields.punto_obs === PtosObs[s].pk && pk_est2.includes(obs[o].fields.punto_obs) === true) {
+                    observaciones = {
+                        "estacion": obs[o].fields.estacion,
+                        "punto_obs": obs[o].fields.punto_obs,
+                        "publicable": obs[o].fields.publicable,
+                        "resenable": obs[o].fields.resenable,
+                        "fichero_project": obs[o].fields.fichero_project,
+                        "fichero_set": obs[o].fields.fichero_set,
+                        "fichero_drop": obs[o].fields.fichero_drop,
+                        "fecha_observacion": obs[o].fields.fecha_observacion,
+                        "fecha_procesado": obs[o].fields.fecha_procesado,
+                        "operador_procesado": obs[o].fields.operador_procesado,
+                        "tipo_gradiente": obs[o].fields.tipo_gradiente,
+                        "observaciones_medida": obs[o].fields.observaciones_medida,
+                        "observaciones_procesado": obs[o].fields.observaciones_procesado,
+                        "gravimetro_observacion": obs[o].fields.gravimetro_observacion,
+                        "gravimetro_gradiente": obs[o].fields.gravimetro_gradiente,
+                        "gradiente_vertical": obs[o].fields.gradiente_vertical,
+                        "incertidumbre_gradiente": obs[o].fields.incertidumbre_gradiente,
+                        "gravedad_procesada": obs[o].fields.gravedad_procesada,
+                        "gravedad_observada": obs[o].fields.gravedad_observada,
+                        "gravedad_cero": obs[o].fields.gravedad_cero,
+                        "dispersion": obs[o].fields.dispersion,
+                        "incertidumbre_medida": obs[o].fields.incertidumbre_medida,
+                        "incertidumbre_sistematica": obs[o].fields.incertidumbre_sistematica,
+                        "incertidumbre_total": obs[o].fields.incertidumbre_total,
+                        "sets_observados": obs[o].fields.sets_observados,
+                        "sets_procesados": obs[o].fields.sets_procesados,
+                        "drops_por_set": obs[o].fields.drops_por_set,
+                        "altura_de_montaje": obs[o].fields.altura_de_montaje,
+                        "altura_de_observacion": obs[o].fields.altura_de_observacion,
+                        "altura_de_procesado": obs[o].fields.altura_de_procesado,
+                        "frecuencia_reloj": obs[o].fields.frecuencia_reloj,
+                        "laser_blue_wlength": obs[o].fields.laser_blue_wlength,
+                        "laser_red_wlength": obs[o].fields.laser_red_wlength,
+                        "laser_dpeak_wlength": obs[o].fields.laser_dpeak_wlength,
+                        "laser_epeak_wlength": obs[o].fields.laser_epeak_wlength,
+                        "laser_fpeak_wlength": obs[o].fields.laser_fpeak_wlength,
+                        "laser_gpeak_wlength": obs[o].fields.laser_gpeak_wlength,
+                        "laser_hpeak_wlength": obs[o].fields.laser_hpeak_wlength,
+                        "laser_ipeak_wlength": obs[o].fields.laser_ipeak_wlength,
+                        "laser_jpeak_wlength": obs[o].fields.laser_jpeak_wlength,
+                        "laser_dpeak_volt": obs[o].fields.laser_dpeak_volt,
+                        "laser_epeak_volt": obs[o].fields.laser_epeak_volt,
+                        "laser_fpeak_volt": obs[o].fields.laser_fpeak_volt,
+                        "laser_gpeak_volt": obs[o].fields.laser_gpeak_volt,
+                        "laser_hpeak_volt": obs[o].fields.laser_hpeak_volt,
+                        "laser_ipeak_volt": obs[o].fields.laser_ipeak_volt,
+                        "laser_jpeak_volt": obs[o].fields.laser_jpeak_volt,
+                        "operador_observacion": obs[o].fields.operador_observacion,
+                        "modelo": obs[o].fields.modelo,
+                        "num_serie": obs[o].fields.num_serie,
+                        "tipo_gravimetro": obs[o].fields.tipo_gravimetro
+                    }
+                    double_obs2.push(observaciones)
+                }
+
+
+            }
+        }
+
+
+        for (let k = 0; k < double_obs2.length; k++) {
+            for (let l = 0; l < featuresOBS.length; l++) {
+                if (double_obs2[k].punto_obs === featuresOBS[l].id) {
+                    featuresOBS[l].observaciones.push(double_obs2[k])
+                }
+            }
+        }
+
+
+        // OBSERVACIONES 
+        //  Encontrar la fecha más actual y que sea publicable y con FG5
+        //  Sino encontrar fecha más actual publicable con A10 
+        //  Sino fecha más actual NO publicable con FG5
+        //  Sino fecha más actual NO publicable con A10
+        //  Sino fecha más actual con gravimetro relativo
+        for (c = 0; c < featuresOBS.length; c++) {
+
+            for (a = 0; a < featuresOBS[c].observaciones.length; a++) {
+
+                featuresOBS[c].fecha_observacion.push(featuresOBS[c].observaciones[a].fecha_observacion)
+                featuresOBS[c].alt_observacion.push(featuresOBS[c].observaciones[a].altura_de_observacion)
+                featuresOBS[c].gravedad_observada.push(featuresOBS[c].observaciones[a].gravedad_observada)
+                featuresOBS[c].gradiente_vertical.push(featuresOBS[c].observaciones[a].gradiente_vertical)
+                featuresOBS[c].tipoGradiente.push(featuresOBS[c].observaciones[a].tipo_gradiente)
+                featuresOBS[c].publicable.push(featuresOBS[c].observaciones[a].publicable)
+
+                if (featuresOBS[c].observaciones[a].modelo === 2 && featuresOBS[c].observaciones[a].publicable === true) {
+                    featuresOBS[c].Gravimetro.push('FG5')
+                    featuresOBS[c].gravimetrosFiltro.push('FG5')
+
+
+                } else if (featuresOBS[c].observaciones[a].modelo === 1 && featuresOBS[c].observaciones[a].publicable === true) {
+
+                    featuresOBS[c].Gravimetro.push('A10')
+                    featuresOBS[c].gravimetrosFiltro.push('A10')
+
+
+                } else if (featuresOBS[c].observaciones[a].modelo === 2 && featuresOBS[c].observaciones[a].publicable === false) {
+
+                    featuresOBS[c].Gravimetro.push('FG5*')
+                    featuresOBS[c].gravimetrosFiltro.push('FG5')
+
+
+                } else if (featuresOBS[c].observaciones[a].modelo === 1 && featuresOBS[c].observaciones[a].publicable === false) {
+                    featuresOBS[c].Gravimetro.push('A10*')
+                    featuresOBS[c].gravimetrosFiltro.push('A10')
+
+
+                } else {
+                    otherTypesGrav = featuresOBS[c].observaciones[a].modelo === 3 ? 'LRG' : featuresOBS[c].observaciones[a].modelo === 4 ? 'gPhone' : featuresOBS[c].observaciones[a].modelo === 5 ? 'gPhoneX' : featuresOBS[c].observaciones[a].modelo === 6 ? 'CG5' : featuresOBS[c].observaciones[a].modelo === 7 ? 'B' : featuresOBS[c].observaciones[a].modelo === 8 ? 'LRD' : 'JILAG'
+
+                    featuresOBS[c].otrosGravimetros.push(otherTypesGrav)
+                    featuresOBS[c].gravimetrosFiltro.push(otherTypesGrav)
+                    featuresOBS[c].Gravimetro.push('Otros')
+
+                }
+            }
+
+        }
+
+        for (d = 0; d < featuresOBS.length; d++) {
+
+            if (featuresOBS[d].Gravimetro.length !== 1) {
+                if (featuresOBS[d].Gravimetro.includes('A10') === false && featuresOBS[d].Gravimetro.includes('A10*') === false && featuresOBS[d].Gravimetro.includes('Otros') === false && featuresOBS[d].Gravimetro.includes('FG5*') === false) {
+                    featuresOBS[d].fecha_observacion = featuresOBS[d].fecha_observacion[0]
+                    featuresOBS[d].Gravimetro = featuresOBS[d].Gravimetro[0]
+                    featuresOBS[d].alt_observacion = featuresOBS[d].alt_observacion[0]
+                    featuresOBS[d].gravedad_observada = featuresOBS[d].gravedad_observada[0]
+                    featuresOBS[d].gradiente_vertical = featuresOBS[d].gradiente_vertical[0]
+
+                } else if (featuresOBS[d].Gravimetro.includes('FG5') === false && featuresOBS[d].Gravimetro.includes('A10*') === false && featuresOBS[d].Gravimetro.includes('Otros') === false && featuresOBS[d].Gravimetro.includes('FG5*') === false) {
+                    featuresOBS[d].fecha_observacion = featuresOBS[d].fecha_observacion[0]
+                    featuresOBS[d].Gravimetro = featuresOBS[d].Gravimetro[0]
+                    featuresOBS[d].alt_observacion = featuresOBS[d].alt_observacion[0]
+                    featuresOBS[d].gravedad_observada = featuresOBS[d].gravedad_observada[0]
+                    featuresOBS[d].gradiente_vertical = featuresOBS[d].gradiente_vertical[0]
+
+                } else if (featuresOBS[d].Gravimetro.includes('A10') === false && featuresOBS[d].Gravimetro.includes('A10*') === false && featuresOBS[d].Gravimetro.includes('FG5') === false && featuresOBS[d].Gravimetro.includes('FG5*') === false) {
+                    featuresOBS[d].fecha_observacion = featuresOBS[d].fecha_observacion[0]
+                    featuresOBS[d].Gravimetro = featuresOBS[d].Gravimetro[0]
+                    featuresOBS[d].otrosGravimetros = featuresOBS[d].otrosGravimetros[featuresOBS[d].Gravimetro.indexOf(featuresOBS[d].fecha_observacion[0])]
+                    featuresOBS[d].alt_observacion = featuresOBS[d].alt_observacion[0]
+                    featuresOBS[d].gravedad_observada = featuresOBS[d].gravedad_observada[0]
+                    featuresOBS[d].gradiente_vertical = featuresOBS[d].gradiente_vertical[0]
+
+                } else if (featuresOBS[d].Gravimetro.includes('A10') === false && featuresOBS[d].Gravimetro.includes('A10*') === false && featuresOBS[d].Gravimetro.includes('FG5') === false && featuresOBS[d].Gravimetro.includes('Otros') === false) {
+                    featuresOBS[d].fecha_observacion = featuresOBS[d].fecha_observacion[0]
+                    featuresOBS[d].Gravimetro = featuresOBS[d].Gravimetro[0]
+                    featuresOBS[d].alt_observacion = featuresOBS[d].alt_observacion[0]
+                    featuresOBS[d].gravedad_observada = featuresOBS[d].gravedad_observada[0]
+                    featuresOBS[d].gradiente_vertical = featuresOBS[d].gradiente_vertical[0]
+
+                } else if (featuresOBS[d].Gravimetro.includes('A10') === false && featuresOBS[d].Gravimetro.includes('FG5*') === false && featuresOBS[d].Gravimetro.includes('FG5') === false && featuresOBS[d].Gravimetro.includes('Otros') === false) {
+                    featuresOBS[d].fecha_observacion = featuresOBS[d].fecha_observacion[0]
+                    featuresOBS[d].Gravimetro = featuresOBS[d].Gravimetro[0]
+                    featuresOBS[d].alt_observacion = featuresOBS[d].alt_observacion[0]
+                    featuresOBS[d].gravedad_observada = featuresOBS[d].gravedad_observada[0]
+                    featuresOBS[d].gradiente_vertical = featuresOBS[d].gradiente_vertical[0]
+
+                } else if (featuresOBS[d].Gravimetro.includes('A10') && featuresOBS[d].Gravimetro.includes('A10*')) {
+                    featuresOBS[d].fecha_observacion = featuresOBS[d].fecha_observacion[featuresOBS[d].Gravimetro.indexOf('A10')]
+                    featuresOBS[d].Gravimetro = featuresOBS[d].Gravimetro[featuresOBS[d].Gravimetro.indexOf('A10')]
+                    featuresOBS[d].alt_observacion = featuresOBS[d].alt_observacion[featuresOBS[d].alt_observacion.indexOf('A10')]
+                    featuresOBS[d].gravedad_observada = featuresOBS[d].gravedad_observada[featuresOBS[d].gravedad_observada.indexOf('A10')]
+                    featuresOBS[d].gradiente_vertical = featuresOBS[d].gradiente_vertical[featuresOBS[d].gradiente_vertical.indexOf('A10')]
+
+                } else if (featuresOBS[d].Gravimetro.includes('A10') && featuresOBS[d].Gravimetro.includes('Otros') || featuresOBS[d].Gravimetro.includes('A10') && featuresOBS[d].Gravimetro.includes('FG5*')) {
+                    featuresOBS[d].fecha_observacion = featuresOBS[d].fecha_observacion[featuresOBS[d].Gravimetro.indexOf('A10')]
+                    featuresOBS[d].Gravimetro = featuresOBS[d].Gravimetro[featuresOBS[d].Gravimetro.indexOf('A10')]
+                    featuresOBS[d].alt_observacion = featuresOBS[d].alt_observacion[featuresOBS[d].alt_observacion.indexOf('A10')]
+                    featuresOBS[d].gravedad_observada = featuresOBS[d].gravedad_observada[featuresOBS[d].gravedad_observada.indexOf('A10')]
+                    featuresOBS[d].gradiente_vertical = featuresOBS[d].gradiente_vertical[featuresOBS[d].gradiente_vertical.indexOf('A10')]
+
+                } else if (featuresOBS[d].Gravimetro.includes('A10*') && featuresOBS[d].Gravimetro.includes('Otros')) {
+                    featuresOBS[d].fecha_observacion = featuresOBS[d].fecha_observacion[featuresOBS[d].Gravimetro.indexOf('A10*')]
+                    featuresOBS[d].Gravimetro = featuresOBS[d].Gravimetro[featuresOBS[d].Gravimetro.indexOf('A10*')]
+                    featuresOBS[d].alt_observacion = featuresOBS[d].alt_observacion[featuresOBS[d].alt_observacion.indexOf('A10*')]
+                    featuresOBS[d].gravedad_observada = featuresOBS[d].gravedad_observada[featuresOBS[d].gravedad_observada.indexOf('A10*')]
+                    featuresOBS[d].gradiente_vertical = featuresOBS[d].gradiente_vertical[featuresOBS[d].gradiente_vertical.indexOf('A10*')]
+
+                } else if (featuresOBS[d].Gravimetro.includes('FG5') && featuresOBS[d].Gravimetro.includes('FG5*') || featuresOBS[d].Gravimetro.includes('FG5') && featuresOBS[d].Gravimetro.includes('A10')) {
+                    featuresOBS[d].fecha_observacion = featuresOBS[d].fecha_observacion[featuresOBS[d].Gravimetro.indexOf('FG5')]
+                    featuresOBS[d].Gravimetro = featuresOBS[d].Gravimetro[featuresOBS[d].Gravimetro.indexOf('FG5')]
+                    featuresOBS[d].alt_observacion = featuresOBS[d].alt_observacion[featuresOBS[d].alt_observacion.indexOf('FG5')]
+                    featuresOBS[d].gravedad_observada = featuresOBS[d].gravedad_observada[featuresOBS[d].gravedad_observada.indexOf('FG5')]
+                    featuresOBS[d].gradiente_vertical = featuresOBS[d].gradiente_vertical[featuresOBS[d].gradiente_vertical.indexOf('FG5')]
+
+                } else if (featuresOBS[d].Gravimetro.includes('FG5*') && featuresOBS[d].Gravimetro.includes('A10*')) {
+                    featuresOBS[d].fecha_observacion = featuresOBS[d].fecha_observacion[featuresOBS[d].Gravimetro.indexOf('FG5*')]
+                    featuresOBS[d].Gravimetro = featuresOBS[d].Gravimetro[featuresOBS[d].Gravimetro.indexOf('FG5*')]
+                    featuresOBS[d].alt_observacion = featuresOBS[d].alt_observacion[featuresOBS[d].alt_observacion.indexOf('FG5*')]
+                    featuresOBS[d].gravedad_observada = featuresOBS[d].gravedad_observada[featuresOBS[d].gravedad_observada.indexOf('FG5*')]
+                    featuresOBS[d].gradiente_vertical = featuresOBS[d].gradiente_vertical[featuresOBS[d].gradiente_vertical.indexOf('FG5*')]
+                }
+            } else {
+                featuresOBS[d].Gravimetro = featuresOBS[d].Gravimetro[0]
+                featuresOBS[d].fecha_observacion = featuresOBS[d].fecha_observacion[0]
+                featuresOBS[d].alt_observacion = featuresOBS[d].alt_observacion[0]
+                featuresOBS[d].gravedad_observada = featuresOBS[d].gravedad_observada[0]
+                featuresOBS[d].gradiente_vertical = featuresOBS[d].gradiente_vertical[0]
+
+
+            }
+        }
+
+
+
+        for (let s = 0; s < PtosObs2.length; s++) {
+            for (let i = 0; i < est.length; i++) {
+
+                if (PtosObs2[s].properties.estacion === est[i].pk) {
+
+                    if (est[i].properties.pais === 'España') {
+
+                        PuntosObservaciones = {
+                            "id": PtosObs2[s].pk,
+                            "id_punto_obs": PtosObs2[s].properties.id_punto_obs,
+                            "nombre": PtosObs2[s].properties.nombre === null ? 'no aplica' : PtosObs2[s].properties.nombre,
+                            "tipo_senal": PtosObs2[s].properties.tipo_senal,
+                            "estado_senal": PtosObs2[s].properties.estado_senal,
+                            "fecha_revision": PtosObs2[s].properties.fecha_revision,
+                            "tipo_acceso": PtosObs2[s].properties.tipo_acceso,
+                            "latitud": PtosObs2[s].properties.latitud,
+                            "longitud": PtosObs2[s].properties.longitud,
+                            "altitud": PtosObs2[s].properties.altitud,
+                            "utm_x": PtosObs2[s].properties.utm_x,
+                            "utm_y": PtosObs2[s].properties.utm_y,
+                            "utm_zona": PtosObs2[s].properties.utm_zona,
+                            "descripcion": PtosObs2[s].properties.descripcion,
+                            "imagen_nw": PtosObs2[s].properties.imagen_nw,
+                            "imagen_ne": PtosObs2[s].properties.imagen_ne,
+                            "imagen_sw": PtosObs2[s].properties.imagen_sw,
+                            "imagen_se": PtosObs2[s].properties.imagen_se,
+                            "estacion_id": PtosObs2[s].properties.estacion,
+                            "num_fotos": PtosObs2[s].properties.num_fotos,
+                            "tiene_descripcion": PtosObs2[s].properties.tiene_descripcion
+                        }
+
+                        feature2 = {
+                            "type": "Feature",
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": PtosObs2[s].properties.geometry.coordinates
+                            },
+                            "ptosObs": [PuntosObservaciones],
+                            "properties": {
+                                "Estación": est[i].properties.id_estacion,
+                                "Nombre": est[i].properties.nombre,
+                                "Punto de observación": PtosObs2[s].properties.id_punto_obs,
+                                "País": est[i].properties.pais,
+                                "Comunidad autónoma": est[i].properties.com_autonoma,
+                                "Provincia": est[i].properties.provincia,
+                                "Isla": est[i].properties.isla === null ? ' ' : est[i].properties.isla,
+                                "Municipio": est[i].properties.municipio,
+                                "Gravedad observada": "",
+                                "Altura de la observación": "",
+                                "Gradiente vertical": "",
+                                //  ALTURA DE LA OBSERVACIÓN
+                                //  GRADIENTE VERTICAL
+                                "Gravímetro": "",
+                                "Fecha de observación": '',
+                                "REGA": est[i].properties.red_primaria === 1 ? 'Sí' : 'No',
+
+                                "Otras redes": est[i].properties.red_secundaria.length === 0 ? ' ' : est[i].properties.red_secundaria,
+                                " ": `<a href="info/" onclick="writeFile()" target="_blank">Más información</a>`
+                            },
+
+                            "pk": PtosObs[s].pk,
+                            "direccion": est[i].properties.direccion,
+                            "hoja_mtn25": est[i].properties.hoja_mtn25,
+                            "hoja_mtn50": est[i].properties.hoja_mtn50,
+                        }
+                        source2.features.push(feature2)
+                        // cierre if de estaciones de España 
+                    } else {  // estaciones de fuera de españa
+
+                        PuntosObservaciones = {
+                            "id": PtosObs2[s].pk,
+                            "id_punto_obs": PtosObs2[s].properties.id_punto_obs,
+                            "nombre": PtosObs2[s].properties.nombre === null ? 'no aplica' : PtosObs2[s].properties.nombre,
+                            "tipo_senal": PtosObs2[s].properties.tipo_senal,
+                            "estado_senal": PtosObs2[s].properties.estado_senal,
+                            "fecha_revision": PtosObs2[s].properties.fecha_revision,
+                            "tipo_acceso": PtosObs2[s].properties.tipo_acceso,
+                            "latitud": PtosObs2[s].properties.latitud,
+                            "longitud": PtosObs2[s].properties.longitud,
+                            "altitud": PtosObs2[s].properties.altitud,
+                            "utm_x": PtosObs2[s].properties.utm_x,
+                            "utm_y": PtosObs2[s].properties.utm_y,
+                            "utm_zona": PtosObs2[s].properties.utm_zona,
+                            "descripcion": PtosObs2[s].properties.descripcion,
+                            "imagen_nw": PtosObs2[s].properties.imagen_nw,
+                            "imagen_ne": PtosObs2[s].properties.imagen_ne,
+                            "imagen_sw": PtosObs2[s].properties.imagen_sw,
+                            "imagen_se": PtosObs2[s].properties.imagen_se,
+                            "estacion_id": PtosObs2[s].properties.estacion,
+                            "num_fotos": PtosObs2[s].properties.num_fotos,
+                            "tiene_descripcion": PtosObs2[s].properties.tiene_descripcion
+                        }
+
+                        feature2 = {
+                            "type": "Feature",
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": PtosObs2[s].properties.geometry.coordinates
+                            },
+                            // "observaciones": [],
+                            "ptosObs": [PuntosObservaciones],
+                            "properties": {
+                                "Estación": est[i].properties.id_estacion === null ? ' ' : est[i].properties.id_estacion,
+                                "Nombre": est[i].properties.nombre === null ? ' ' : est[i].properties.nombre,
+                                "Punto de observación": PtosObs2[s].properties.id_punto_obs,
+                                "País": est[i].properties.pais === null ? ' ' : est[i].properties.pais,
+                                "Gravedad observada": "",
+                                "Altura de la observación": "",
+                                "Gradiente vertical": "",
+                                "Gravímetro": '',
+                                "Fecha de observación": '',
+                                "REGA": est[i].properties.red_primaria === null ? 'No' : 'Sí',
+                                "Otras redes": est[i].properties.red_secundaria.length === 0 ? ' ' : est[i].properties.red_secundaria,
+                                " ": `<a href="info/" target="_blank" onclick="writeFile()">Más información</a>`
+                            },
+
+                            "pk": est[i].pk,
+                            "direccion": est[i].properties.direccion,
+                            "hoja_mtn25": est[i].properties.hoja_mtn25,
+                            "hoja_mtn50": est[i].properties.hoja_mtn50,
+
+                        }
+                        source2.features.push(feature2)
+
+
+                    } // fin del else cuando son estaciones !== España
+
+
+
+
+                }// cuando las estaciones y puntos de observacion son iguales
+
+
+            } // for de estaciones
+        } // for de ptos de observacion
+
+
+        for (let f = 0; f < featuresOBS.length; f++) {
+            for (let sou = 0; sou < source2.features.length; sou++) {
+                if (featuresOBS[f].id === source2.features[sou].pk) {
+                    source2.features[sou].observaciones = featuresOBS[f].observaciones
+                    source2.features[sou].properties.Gravímetro = featuresOBS[f].Gravimetro === 'Otros' ? featuresOBS[f].otrosGravimetros : featuresOBS[f].Gravimetro
+                    source2.features[sou].properties["Fecha de observación"] = featuresOBS[f].fecha_observacion
+
+                    source2.features[sou].ptosObs[0].gravimetrosFiltro = featuresOBS[f].gravimetrosFiltro
+
+                    source2.features[sou].ptosObs[0].tipoGradiente = featuresOBS[f].tipoGradiente
+
+                    source2.features[sou].ptosObs[0].publicable = featuresOBS[f].publicable
+
+                    source2.features[sou].properties["Gravedad observada"] = featuresOBS[f].gravedad_observada !== undefined && featuresOBS[f].gravedad_observada !== null ? `${featuresOBS[f].gravedad_observada} [µGal]` : ''
+                    source2.features[sou].properties["Altura de la observación"] = featuresOBS[f].alt_observacion !== undefined && featuresOBS[f].alt_observacion !== 0 && featuresOBS[f].alt_observacion !== null ? `${featuresOBS[f].alt_observacion} [cm] ` : ' '
+                    source2.features[sou].properties["Gradiente vertical"] = featuresOBS[f].gradiente_vertical !== undefined && featuresOBS[f].gradiente_vertical !== null ? `${featuresOBS[f].gradiente_vertical} [µGal/cm] ` : ''
+
+
+                }
+            }
+        }
+
+        // ########################################################################################
+
+
+
+        const layer = new M.layer.GeoJSON({
+            name: "capaJson",
+            source: source2,
+            extract: true,
+            transparent: true
+        })
+
+        let estilo_base = new M.style.Generic({
+
+            point: {
+                // Radio del punto. Numérico
+                radius: 8,
+                // Relleno
+                fill: {
+                    // Color de relleno. Hexadecimal, nominal
+                    color: (feature) => {
+                        let gravimetro = feature.getAttributes().Gravímetro;
+
+                        if (gravimetro === 'FG5' || gravimetro === 'FG5*') {  //  FG5
+                            return 'black'
+                        } else if (gravimetro === 'A10' || gravimetro === 'A10*') { // A10
+                            return '#FFE933'
+                        } else { // otros
+                            return '#8A33FF'
+                        }
+                    },
+                },
+                label: {
+                    text: (feature) => {
+                        let estación = feature.getAttributes().Estación;
+                        let ptoObservacion = feature.getAttributes()["Punto de observación"]
+
+                        if (mapjs.getZoom() >= 8 && mapjs.getZoom() <= 17) {  //  FG5
+                            return estación
+                        } else if (mapjs.getZoom() >= 18) { // A10
+                            return ptoObservacion
+                        }
+                    },
+                    // color: 'red',
+                    scale: 2,
+                    // Halo de la fuente
+                    stroke: {
+                        // Color de relleno del halo. Hexadecimal, nominal
+                        color: 'white',
+                        // Grosor en píxeles del halo
+                        width: 4
+                    },
+                    align: M.style.align.LEFT,
+                    baseline: M.style.baseline.BOTTOM,
+                    offset: [10, -5],
+                }
+            }
+        });
+
+
+        // Se parametriza las opciones de la agrupación
+
+        let clusterOptions = {
+            // Se añaden los rangos y los estilos a cada rango
+            ranges: [{
+                min: 2,
+                max: 5,
+                style: new M.style.Generic({
+                    point: {
+                        radius: 10,
+                        fill: {
+                            color: 'green',
+                            opacity: 0.5
+                        },
+                        stroke: {
+                            color: '#FF0000'
+                        }
+                    }
+                }),
+            }, {
+                min: 5,
+                max: 15,
+                style: new M.style.Generic({
+                    point: {
+
+                        radius: 20,
+                        fill: {
+                            color: 'blue',
+                            opacity: 0.5
+                        },
+                        stroke: {
+                            color: '#FF0000'
+                        }
+
+                    }
+                }),
+
+            }, {
+                min: 15,
+                max: Infinity,
+                style: new M.style.Generic({
+                    point: {
+
+                        radius: 30,
+                        fill: {
+                            color: 'orange',
+                            opacity: 0.5
+                        },
+                        stroke: {
+                            color: '#FF0000'
+                        }
+
+                    }
+                }),
+
+            }
+            ],
+            // Se añade la parametrización para los cluster o agrupaciones
+            animated: true,
+            hoverInteraction: true,
+            displayAmount: true,
+            selectInteraction: true,
+            distance: 15,
+            label: {
+                font: 'bold 19px Comic Sans MS',
+                color: '#FFFFFF'
+            }
+        };
+
+        // Se parametrizan las opciones propias de OpenLayers
+        let vendorParameters = {
+            distanceSelectFeatures: 1,
+            convexHullStyle: {
+                fill: {
+                    color: 'black',
+                    opacity: 0.5
+                },
+                stroke: {
+                    color: 'red',
+                    width: 1
+                }
+            }
+        }
+
+        let clusterStyle = new M.style.Cluster(clusterOptions, vendorParameters);
+        let composite = clusterStyle.add(estilo_base);
+
+        layer.setStyle(composite);
+
+        mapjs.addLayers([layer]);
+        // mapjs.addLayers([tms_global]);
+
+
+
+
+
+        layer.on(M.evt.SELECT_FEATURES, function (features, evt) {
+            // se puede comprobar si el elemento seleccionado es un cluster o no para quitar el popup, por ejemplo
+            if (features[0] instanceof M.ClusteredFeature) {
+                document.getElementsByClassName("m-popup m-collapsed")[0].hidden = true;
+            }
+        });
+
+
+        mapjs.on(M.evt.CLICK, (m) => {
+            MRE = []
+            coordinates = m.coord;
+            MRE.push(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326'))
+            latitud = MRE[0][1].toFixed(5);
+            longitud = MRE[0][0].toFixed(5);
+            localStorage.setItem("latitud", latitud);
+            localStorage.setItem("longitud", longitud);
+        })
+
+
+        var writeFile = () => {
+            var estacionClick = document.querySelector('td.value').innerHTML
+            var toSave
+            var pto_obs = document.querySelectorAll('td.value')[2].innerHTML
+
+            for (let s = 0; s < source2.features.length; s++) {
+                if (estacionClick === source2.features[s].properties.Estación && pto_obs === source2.features[s].properties["Punto de observación"]) {
+                    toSave = source2.features[s]
+                }
+            }
+            localStorage.setItem("Parareseña", JSON.stringify(toSave));
+
+
+        }
+
+        // PLUGINS
+
+        const mp = new M.plugin.FullTOC({
+            postition: 'TR',
+            collapsible: true,
+            collapsed: true
+        });
+
+        mapjs.addPlugin(mp);
+
+        const mp2 = new M.plugin.MouseSRS();
+
+        mapjs.addPlugin(mp2);
+
+        const capasFondo = new M.plugin.BackImgLayer({
+            position: 'TR',
+            collapsible: true,
+            collapsed: true,
+            layerId: 0,
+            columnsNumber: 3,
+            layerVisibility: true,
+            layerOpts: [
+                {
+                    id: 'IGNBase',
+                    preview: 'https://www.ign.es/iberpix/static/media/mapa.98d45f00.png',
+                    title: 'Callejero',
+                    layers: [new M.layer.WMTS({
+                        url: 'http://www.ign.es/wmts/ign-base?',
+                        name: 'IGNBaseTodo',
+                        legend: 'Mapa IGN',
+                        matrixSet: 'GoogleMapsCompatible',
+                        transparent: false,
+                        displayInLayerSwitcher: false,
+                        queryable: false,
+                        visible: true,
+                        format: 'image/jpeg',
+                    })],
+                },
+                {
+                    id: 'TMSRelieve',
+                    preview: 'https://tms-relieve.idee.es/1.0.0/relieve/0/0/0.jpeg',
+                    title: 'Relieve',
+                    layers: [new M.layer.TMS({
+                        url: 'https://tms-relieve.idee.es/1.0.0/relieve/{z}/{x}/{-y}.jpeg',
+                        name: 'TMS geofísica',
+                        projection: 'EPSG:3857',
+                        minZoom: 1,
+                        maxZoom: 15,
+                        tileGridMaxZoom: 14,
+                        visibility: true,
+                        transparent: true,
+                    })],
+                },
+                {
+                    id: 'imagen',
+                    title: 'Ortofotos',
+                    preview: 'https://www.ign.es/iberpix/static/media/image.44c5b451.png',
+                    layers: [new M.layer.WMTS({
+                        url: 'http://www.ign.es/wmts/pnoa-ma?',
+                        name: 'OI.OrthoimageCoverage',
+                        legend: 'Imagen (PNOA)',
+                        matrixSet: 'GoogleMapsCompatible',
+                        transparent: false,
+                        displayInLayerSwitcher: false,
+                        queryable: false,
+                        visible: true,
+                        format: 'image/jpeg',
+                    })],
+                },
+                {
+                    id: 'hibrido',
+                    title: 'Híbrido',
+                    preview: 'https://www.ign.es/iberpix/static/media/hibrido.485e957e.png',
+                    layers: [new M.layer.WMTS({
+                        url: 'http://www.ign.es/wmts/pnoa-ma?',
+                        name: 'OI.OrthoimageCoverage',
+                        legend: 'Imagen (PNOA)',
+                        matrixSet: 'GoogleMapsCompatible',
+                        transparent: true,
+                        displayInLayerSwitcher: false,
+                        queryable: false,
+                        visible: true,
+                        format: 'image/png',
+                    }),
+                    new M.layer.WMTS({
+                        url: 'http://www.ign.es/wmts/ign-base?',
+                        name: 'IGNBaseOrto',
+                        matrixSet: 'GoogleMapsCompatible',
+                        legend: 'Mapa IGN',
+                        transparent: false,
+                        displayInLayerSwitcher: false,
+                        queryable: false,
+                        visible: true,
+                        format: 'image/png',
+                    })
+                    ],
+                },
+                {
+                    id: 'Mapa',
+                    preview: 'https://www.ign.es/iberpix/static/media/raster.c7a904f3.png',
+                    title: 'Mapa Topografico',
+                    layers: [new M.layer.WMTS({
+                        url: 'https://www.ign.es/wmts/mapa-raster?',
+                        name: 'MTN',
+                        legend: 'Mapa Topografico Nacional Raster',
+                        matrixSet: 'GoogleMapsCompatible',
+                        transparent: false,
+                        displayInLayerSwitcher: false,
+                        queryable: false,
+                        visible: true,
+                        format: 'image/png',
+                    })],
+                },
+                {
+                    id: 'OSM',
+                    preview: 'https://a.tile.openstreetmap.org/0/0/0.png',
+                    title: 'OSM',
+                    layers: [new M.layer.OSM({
+                        name: 'OSM',
+                        legend: 'OSM',
+                        transparent: true,
+                        tiled: true,
+                        url: 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        matrixSet: 'EPSG:3857',
+                        displayInLayerSwitcher: true,
+                        visible: true
+                    })],
+                }
+            ],
+        });
+        mapjs.addPlugin(capasFondo);
+
+        const mp3 = new M.plugin.MeasureBar({
+            position: 'TR',
+            collapsible: true,
+            collapsed: true,
+            tooltip: 'Medidas',
+        });
+
+        mapjs.addPlugin(mp3);
+        // Extensión compartir Mapa
+        const compartirMapa = new M.plugin.ShareMap({
+            baseUrl: 'https://componentes.cnig.es/api-core/', // obligatorio
+            position: 'BL', // TR, TL, BR, BL
+            urlAPI: false, // false
+            title: 'Ey, comparte el mapa',
+            btn: 'salir',
+            tooltip: 'ha sido copiado con éxito',
+        });
+        mapjs.addPlugin(compartirMapa);
+
+        const infoCoordenadas = new M.plugin.Infocoordinates({
+            position: 'TR',
+            decimalGEOcoord: 6,
+            decimalUTMcoord: 3
+
+        });
+        mapjs.addPlugin(infoCoordenadas);
+
+        // Extensión mapa de localización
+        const localizacion = new M.plugin.OverviewMap({
+            collapsed: true,
+            collapsible: true,
+            position: 'BL',
+            fixed: true,
+            zoom: 4,
+            baseLayer: 'WMTS*http://www.ign.es/wmts/ign-base?*IGNBaseTodo*GoogleMapsCompatible*Mapa IGN*false*image/jpeg*false*false*true', //Ejemplo WMTS
+        });
+        mapjs.addPlugin(localizacion);
+
+        const mp4 = new M.plugin.ViewManagement({
+            position: 'TL',
+            collapsible: true,
+            collapsed: true,
+            predefinedZoom: [{
+                name: 'zoom 1',
+                center: [-428106.86611520057, 4334472.25393817],
+                zoom: 4,
+            },
+            {
+                name: 'zoom 2',
+                bbox: [-2392173.2372, 3033021.2824, 1966571.8637, 6806768.1648],
+            }],
+            zoomExtent: true,
+            viewhistory: false,
+            zoompanel: true,
+            isDraggable: false,
+        });
+
+        mapjs.addPlugin(mp4);
+
+
+        const filtros = new M.ui.Panel('filtrarGeojson', {
+            "collapsible": true,
+            "className": 'panelExtraCSSFilter',
+            "collapsedButtonClass": 'icon-target',
+            "position": M.ui.position.TL
+        });
+
+
+        var mcontrolmcontainerfilter = document.createElement('div');
+        mcontrolmcontainerfilter.className = 'm-control m-container';
+        var tituloContenedorfilter = document.createElement('div');
+        tituloContenedorfilter.className = 'divTituloFilter'
+        var titulofilter = document.createElement('p');
+        titulofilter.innerHTML = 'Filtros';
+        titulofilter.title = 'Filtros'
+        titulofilter.id = "titleFilter"
+        tituloContenedorfilter.appendChild(titulofilter);
+        var contenedorPadrefilter = document.createElement('div');
+        contenedorPadrefilter.className = 'controlPadre'
+        var contenedorfilter = document.createElement('div');
+
+        var divToggleSwitchfilter = document.createElement('div');
+
+
+        var ToggleSwitchfilter =
+            `
+                            <label id="attr" for="name">Comunidad Autonoma:</label>
+                            <br>
+
+                            <select class="list" name="ccaa" id="ccaa">
+                                <option value=""></option>
+                                ${comunidades_autonomas_filtros.nombre.map((x) => (
+
+                `<option value=${x}>${x.replace(/-/g, " ")}</option>`
+            ))} 
+                            </select>
+                            
+                            <br> </br>
+
+                            <label id="attr" for="name">Provincia:</label>
+                            <br>
+                            <select class="list" name="prov" id="prov">
+                                <option value=""></option>
+                                ${provincias_filtros.nombre.map((x) => (
+                `<option value=${x}>${x.replace(/-/g, " ")}</option>`
+            ))} 
+                            </select>
+                            
+                            <br> </br>
+
+                            <label id="attr" for="name">Isla:</label>
+                            <br>
+
+                            <select class="list" name="isla" id="isla">
+                                <option value=""></option>
+                                ${isla_filtro.nombre.map((x) => (
+                `<option value=${x}>${x.replace(/-/g, " ")}</option>`
+            ))} 
+                            </select>
+
+                            <br> </br>
+
+                            <label id="attr" >Pertenecen a REGA:</label>
+                            <br>
+
+                            <select class="list" name="rega" id="rega">
+                                <option value=""></option>
+                                <option value="Sí">Si</option>
+                                <option value="No">No</option>
+                            </select> 
+                            
+                            <br> </br>
+
+
+                            
+                            <label id="attr" for="name">Otras Redes:</label>
+                            <br>
+                            <select class="list" name="redes" id="redes">
+                                <option value=""></option>
+                                ${redes_list.nombre.map((x) => (
+                `<option value=${x}>${x}</option>`
+            ))} 
+                            </select>
+
+                            <br> </br>
+
+                            <label for="name">Tipos de señalización:</label>
+                            <br>
+                            <select class="list" name="señal" id="señal">
+                                <option value=""></option>
+                                ${señal.nombre.map((x) => (
+                `<option value=${x}>${x}</option>`
+            ))} 
+                            </select>
+
+                            <br> </br>
+
+                            <label for="name">Estado de la señal:</label>
+                            <br>
+                            <select class="list" name="estadoSeñal" id="estadoSeñal">
+                                <option value=""></option>
+                                ${estadoSeñal.nombre.map((x) => (
+                `<option value=${x}>${x.replace(/-/g, " ")}</option>`
+            ))} 
+                            </select>
+
+                            <br> </br>
+
+                            <label for="name">Tipo de acceso:</label>
+                            <br>
+                            <select class="list" name="tipoAcces" id="tipoAcces">
+                                <option value=""></option>
+                                ${tipoAcceso.nombre.map((x) => (
+                `<option value=${x}>${x}</option>`
+            ))} 
+                            </select>
+
+                            <br> </br>
+
+                            <label for="name">Gravímetro empleado:</label>
+                            <br>
+                            <select class="list" name="gravimetro" id="gravimetro">
+                                <option value=""></option>
+                                <option value="FG5">FG5</option>
+                                <option value="A10">A10</option>
+                                <option value="LRG">LRG</option>
+                                <option value="gPhone">gPhone</option>
+                                <option value="gPhoneX">gPhoneX</option>
+                                <option value="CG5">CG5</option>
+                                <option value="B">B</option>
+                                <option value="LRD">LRD</option>
+                                <option value="JILAG">JILAG</option> 
+                            </select>
+
+                            <br> </br>
+
+                            <label for="name">Tipo de gradiente:</label>
+                            <br>
+                            <select class="list" name="tipoGrad" id="tipoGrad">
+                                <option value=""></option>
+                                ${tipoGradiente.nombre.map((x) => (
+                `<option value=${x}>${x}</option>`
+            ))} 
+                            </select>
+
+                            <br> </br>
+
+                            <label id="attr" >Es publicable:</label>
+                            <br>
+
+                            <select class="list" name="public" id="public">
+                                <option value=""></option>
+                                <option value="Sí">Si</option>
+                                <option value="No">No</option>
+                            </select> 
+
+                            <br> </br>
+                            
+                            <button type="button" id="filtrar" onclick="filter()">Filtrar</button> <button type="button" onclick="erase()">Borrar Filtro</button>
+                            <br>
+
+                            `
+        divToggleSwitchfilter.innerHTML = ToggleSwitchfilter.trim();
+        var cuerpoContenedorfilter = document.createElement('div');
+        cuerpoContenedorfilter.className = 'divCuerpo'
+        var cuerpofilter = document.createElement('p')
+
+
+        divToggleSwitchfilter.innerHTML = ToggleSwitchfilter.trim();
+        const featuresFiltrados = {
+            "type": "FeatureCollection",
+            "features": [],
+            "crs": {
+                "properties": {
+                    "name": "EPSG:4326"
+                },
+                "type": "name"
+            }
+        }
+        const layerFiltrada = new M.layer.GeoJSON({
+            name: "capaJson2",
+            source: featuresFiltrados,
+            extract: true,
+            transparent: true
+        })
+
+
+
+        var filter = () => {
+            const layerFiltrada = new M.layer.GeoJSON({
+                name: "capaJson2",
+                source: featuresFiltrados,
+                extract: true,
+                transparent: true
+            })
+
+            mapjs.removeLayers([layer]);
+
+
+            var ccaa = document.getElementById("ccaa").value;
+            var prov = document.getElementById("prov").value;
+            var isla = document.getElementById("isla").value;
+            var rega = document.getElementById("rega").value;
+            var redes = document.getElementById("redes").value
+            var señales = document.getElementById("señal").value === 'Sin' ? 'Sin Señalizar' : document.getElementById("señal").value
+
+            var estado = document.getElementById("estadoSeñal").value
+            var acceso = document.getElementById("tipoAcces").value
+            var gravimtEmpleados = document.getElementById("gravimetro").value
+            var gradiente = document.getElementById("tipoGrad").value
+            var isPublic = document.getElementById("public").value;
+
+            if (ccaa !== "") {
+                var CCAA
+                for (let opt = 0; opt < comunidades_autonomas_filtros.nombre.length; opt++) {
+                    if (comunidades_autonomas_filtros.nombre[opt] === ccaa) {
+                        CCAA = comunidades_autonomas.nombre[opt]
+                    }
+                }
+
+                for (let m = 0; m < source2.features.length; m++) {
+                    if (source2.features[m].properties["Comunidad autónoma"] === CCAA) {
+                        featuresFiltrados.features.push(source2.features[m])
+                    }
+                }
+            }
+
+            if (prov !== "") {
+
+                var PROV
+                for (let opt = 0; opt < provincias_filtros.nombre.length; opt++) {
+                    if (provincias_filtros.nombre[opt] === prov) {
+                        PROV = provincias.nombre[opt]
+                    }
+                }
+
+                for (let m = 0; m < source2.features.length; m++) {
+                    if (source2.features[m].properties.Provincia === PROV) {
+                        featuresFiltrados.features.push(source2.features[m])
+                    }
+                }
+            }
+
+            if (isla !== "") {
+                var ISLA
+                for (let opt = 0; opt < isla_filtro.nombre.length; opt++) {
+                    if (isla_filtro.nombre[opt] === isla) {
+                        ISLA = islas.nombre[opt]
+                    }
+                }
+                for (let m = 0; m < source2.features.length; m++) {
+                    if (source2.features[m].properties.Isla === ISLA) {
+                        featuresFiltrados.features.push(source2.features[m])
+                    }
+                }
+            }
+
+            if (rega !== false) {
+                for (let m = 0; m < source2.features.length; m++) {
+                    if (source2.features[m].properties.REGA === rega) {
+                        featuresFiltrados.features.push(source2.features[m])
+                    }
+                }
+            }
+
+            if (redes !== "") {
+                var REDES
+                for (let opt = 0; opt < redes_list.nombre.length; opt++) {
+                    if (redes_list.nombre[opt] === redes) {
+                        REDES = redes_list.nombre[opt]
+                    }
+                }
+                for (let m = 0; m < source2.features.length; m++) {
+                    if (source2.features[m].properties["Otras redes"].length !== 0 && source2.features[m].properties["Otras redes"].includes(REDES)) {
+                        featuresFiltrados.features.push(source2.features[m])
+                    }
+                }
+            }
+
+
+            if (señales !== "") {
+                var SEÑALES
+                for (let opt = 0; opt < señal.nombre.length; opt++) {
+                    if (señal.nombre[opt] === señales) {
+                        SEÑALES = señal.codigo[opt]
+                    }
+                }
+
+                for (let m = 0; m < source2.features.length; m++) {
+                    if (source2.features[m].ptosObs[0].tipo_senal === SEÑALES) {
+                        featuresFiltrados.features.push(source2.features[m])
+                    }
+                }
+            }
+
+
+            if (estado !== "") {
+                var ESTADO
+                for (let opt = 0; opt < estadoSeñal.nombre.length; opt++) {
+                    if (estadoSeñal.nombre[opt] === estado) {
+                        ESTADO = estadoSeñal.codigo[opt]
+                    }
+                }
+
+                for (let m = 0; m < source2.features.length; m++) {
+                    if (source2.features[m].ptosObs[0].estado_senal === ESTADO) {
+                        featuresFiltrados.features.push(source2.features[m])
+                    }
+                }
+            }
+
+
+            if (acceso !== "") {
+                var ACCESO
+                for (let opt = 0; opt < tipoAcceso.nombre.length; opt++) {
+                    if (tipoAcceso.nombre[opt] === acceso) {
+                        ACCESO = tipoAcceso.codigo[opt]
+                    }
+                }
+
+                for (let m = 0; m < source2.features.length; m++) {
+                    if (source2.features[m].ptosObs[0].tipo_acceso === ACCESO) {
+                        featuresFiltrados.features.push(source2.features[m])
+                    }
+                }
+            }
+
+
+            if (gravimtEmpleados !== "") {
+
+                for (let m = 0; m < source2.features.length; m++) {
+                    try {
+                        if (source2.features[m].ptosObs[0].gravimetrosFiltro.includes(gravimtEmpleados)) {
+                            featuresFiltrados.features.push(source2.features[m])
+                        }
+                    } catch {
+
+                    }
+
+                }
+            }
+
+            if (gradiente !== "") {
+                var GRADIENTES
+                for (let opt = 0; opt < tipoGradiente.nombre.length; opt++) {
+                    if (tipoGradiente.nombre[opt] === gradiente) {
+                        GRADIENTES = tipoGradiente.codigo[opt]
+                    }
+                }
+
+                try {
+                    for (let m = 0; m < source2.features.length; m++) {
+                        if (source2.features[m].ptosObs[0].tipoGradiente.includes(GRADIENTES)) {
+                            featuresFiltrados.features.push(source2.features[m])
+                        }
+                    }
+                } catch { }
+            }
+
+
+            if (isPublic !== "") {
+                var PUBLICABLE
+                for (let opt = 0; opt < esPublicable.nombre.length; opt++) {
+                    if (esPublicable.nombre[opt] === isPublic) {
+                        PUBLICABLE = esPublicable.codigo[opt]
+                    }
+                }
+                try {
+                    for (let m = 0; m < source2.features.length; m++) {
+                        if (source2.features[m].ptosObs[0].publicable.includes(PUBLICABLE)) {
+                            featuresFiltrados.features.push(source2.features[m])
+                        }
+                    }
+                } catch { }
+            }
+
+            mapjs.addLayers([layerFiltrada])
+            layerFiltrada.setStyle(estilo_base)
+            var btnFiltrar = document.getElementById("filtrar")
+            btnFiltrar.disabled = true
+
+        }
+
+        var erase = () => {
+            mapjs.removeLayers([layerFiltrada])
+            mapjs.addLayers([layer])
+            featuresFiltrados.features = []
+
+            var ccaa_filter = document.getElementById("ccaa");
+            var prov_filter = document.getElementById("prov");
+            var isla_filter = document.getElementById("isla");
+            var rega_filter = document.getElementById("rega");
+            var redes_filter = document.getElementById("redes");
+            var señales_filter = document.getElementById("señal");
+            var estado_filter = document.getElementById("estadoSeñal")
+            var acceso_filter = document.getElementById("tipoAcces")
+            var gravimetro_filter = document.getElementById("gravimetro")
+            var gradientes_filter = document.getElementById("tipoGrad")
+            var public_filter = document.getElementById("public")
+
+            ccaa_filter.value = "";
+            prov_filter.value = "";
+            isla_filter.value = "";
+            rega_filter.value = "";
+            redes_filter.value = "";
+            señales_filter.value = "";
+            estado_filter.value = "";
+            acceso_filter.value = "";
+            gravimetro_filter.value = "";
+            gradientes_filter.value = "";
+            public_filter.value = "";
+            document.getElementById("filtrar").disabled = false
+
+        }
+
+        contenedorfilter.appendChild(divToggleSwitchfilter);
+        contenedorfilter.className = 'ol-control ol-control-tool'
+        contenedorPadrefilter.appendChild(tituloContenedorfilter);
+        contenedorPadrefilter.appendChild(contenedorfilter);
+        mcontrolmcontainerfilter.appendChild(contenedorPadrefilter);
+        contenedorPadrefilter.appendChild(cuerpoContenedorfilter);
+
+        mapjs.on(M.evt.COMPLETED, () => {
+            filtros.on(M.evt.ADDED_TO_MAP, (e) => {
+                filtros.getControlsContainer().append(mcontrolmcontainerfilter);
+            });
+            mapjs.addPanels(filtros);
+            document.querySelector('.m-panel.panelExtraCSSFilter.collapsed button').title = 'Filtros'
+        });
+
+
+    </script>
+</body>
+
+</html>
