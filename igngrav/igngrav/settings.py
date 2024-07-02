@@ -10,8 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-import os
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,15 +20,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# Gets the secret key from a file
 with open(BASE_DIR / 'keys' / 'secret_key.txt') as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Gets the list of hosts served by Django from a file
 with open(BASE_DIR / 'hosts' / 'allowed_hosts.txt') as f:
     ALLOWED_HOSTS = [line.strip() for line in f.readlines()]
 
+# Variable defined to allow GeoDjango to find the GDAL library
 GDAL_LIBRARY_PATH = r"C:\OSGeo4W\bin\gdal308.dll"
 
 
@@ -57,10 +58,10 @@ INSTALLED_APPS = [
     'smart_selects',
 ]
 
-# django-smart-selects
+# Needed for django-smart-selects to work
 USE_DJANGO_JQUERY = True
 
-# django-admin-interface delete is possible
+# Needed for django-admin-interface to work
 X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
@@ -99,6 +100,7 @@ WSGI_APPLICATION = 'igngrav.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# Gets the database key from a file
 with open(BASE_DIR / 'keys' / 'database_key.txt') as f:
     database_key = f.read().strip()
 
@@ -150,7 +152,6 @@ USE_TZ = True
 STATIC_ROOT = BASE_DIR / 'static'
 STATIC_URL = 'static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# WHITENOISE_ROOT = os.path.join(STATIC_ROOT, 'root')
 
 
 # Default primary key field type
@@ -158,11 +159,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Path to store uploaded files
+# Path where uploaded files are stored
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = 'media/'
 
 # leaflet Module
+ign_attribution = 'Instituto Geográfico Nacional'
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (40.408401, -3.687768),
     'DEFAULT_ZOOM': 12,
@@ -171,20 +173,35 @@ LEAFLET_CONFIG = {
     'ATTRIBUTION_PREFIX': 'Powered by django-leaflet',
     'RESET_VIEW': False,
     'TILES': [
-        ('OpenStreetMap', 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        'attribution': '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        }),
-        ("Ortofoto", 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-       'attribution': 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-        }),
-        ('Mapa base IGN', 'https://tms-ign-base.idee.es/1.0.0/IGNBaseTodo/{z}/{x}/{-y}.jpeg', {
-        'attribution': 'Instituto Geográfico Nacional',
-        }),
-        ('Mapa topográfico IGN', 'https://tms-mapa-raster.ign.es/1.0.0/mapa-raster/{z}/{x}/{-y}.jpeg', {
-        'attribution': 'Instituto Geográfico Nacional',
-        }),    
-        ('PNOA', 'https://tms-pnoa-ma.idee.es/1.0.0/pnoa-ma/{z}/{x}/{-y}.jpeg', {
-        'attribution': 'Instituto Geográfico Nacional',
-        }),      
+        (
+            'OpenStreetMap', 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+            {
+                'attribution': '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+            }
+        ),
+        (
+            "Ortofoto", 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+            {
+                'attribution': 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            }
+        ),
+        (
+            'Mapa base IGN', 'https://tms-ign-base.idee.es/1.0.0/IGNBaseTodo/{z}/{x}/{-y}.jpeg',
+            {
+                'attribution': f'{ign_attribution}',
+            }
+        ),
+        (
+            'Mapa topográfico IGN', 'https://tms-mapa-raster.ign.es/1.0.0/mapa-raster/{z}/{x}/{-y}.jpeg',
+            {
+                'attribution': f'{ign_attribution}',
+            }
+        ),
+        (
+            'PNOA', 'https://tms-pnoa-ma.idee.es/1.0.0/pnoa-ma/{z}/{x}/{-y}.jpeg',
+            {
+                'attribution': f'{ign_attribution}',
+            }
+        ),
     ],
 }
