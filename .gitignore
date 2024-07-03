@@ -166,3 +166,6 @@ igngrav/media/FICHEROS/
 igngrav/media/FOTOS/
 igngrav/media/MANTENIMIENTO/
 igngrav/media/MANUALES/
+
+# File containing the command needed to execute a SonarQube analysis
+invoke-sonar-scanner.txt
