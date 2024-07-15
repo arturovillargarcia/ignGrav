@@ -39,7 +39,10 @@ class TipoMantenimientoListFilterForMantenimiento(admin.SimpleListFilter):
         (6, _("Electrónica")),
         (7, _("Comparación")),
         (8, _("Deriva de gravímetro relativo")),
-        (9, _("Otra"))
+        (9, _("Offset de los inclinómetros")),
+        (10, _("Sensibilidad de los inclinómetros")),
+        (11, _("Acoplamiento transversal del trípode")),
+        (0, _("Otra"))
         )
         return mis_lookups
 

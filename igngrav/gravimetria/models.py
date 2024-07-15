@@ -402,7 +402,10 @@ class Mantenimiento(models.Model):
         (6, "Electrónica"),
         (7, "Comparación"),
         (8, "Deriva de gravímetro relativo"),
-        (9, "Otra")
+        (9, "Offset de los inclinómetros"),
+        (10, "Sensibilidad de los inclinómetros"),
+        (11, "Acoplamiento transversal del trípode"),
+        (0, "Otra")
     ]
     gravimetro = models.ForeignKey(
         Gravimetro, 
